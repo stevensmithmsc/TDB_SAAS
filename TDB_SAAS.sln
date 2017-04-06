@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDB_SAAS", "TDB_SAAS\TDB_SAAS.csproj", "{C25857B5-9BFB-4190-A910-E4ACE0EF5964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDB_SAAS.Tests", "TDB_SAAS.Tests\TDB_SAAS.Tests.csproj", "{8A10088F-C7C5-4CA8-868B-F07D2651D8E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C25857B5-9BFB-4190-A910-E4ACE0EF5964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C25857B5-9BFB-4190-A910-E4ACE0EF5964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C25857B5-9BFB-4190-A910-E4ACE0EF5964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C25857B5-9BFB-4190-A910-E4ACE0EF5964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A10088F-C7C5-4CA8-868B-F07D2651D8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A10088F-C7C5-4CA8-868B-F07D2651D8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A10088F-C7C5-4CA8-868B-F07D2651D8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A10088F-C7C5-4CA8-868B-F07D2651D8E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

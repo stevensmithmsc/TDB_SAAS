@@ -1,0 +1,22 @@
+﻿@model List<TDB_SAAS.Models.Title>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Titles</h2>
+
+<table>
+
+
+    @foreach (var title in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(title.TitleValue, "Edit", "Person", new { id = title.ID }, null) </td>
+            <td>@title.AvailGenders</td>
+            <td>@title.DefaultGender</td>
+        </tr>
+    }
+
+</table>
+

@@ -23,13 +23,13 @@ namespace TDB_SAAS.Models
         public Nullable<Gender> DefaultGender { get; set; }
 
         [ForeignKey("Creator")]
-        public int CreatorID { get; set; }
+        public int? CreatorID { get; set; }
         public virtual Person Creator { get; set; }
 
         public DateTime Created { get; set; }
 
         [ForeignKey("Modifier")]
-        public int ModifierID { get; set; }
+        public int? ModifierID { get; set; }
         public virtual Person Modifier { get; set; }
 
         public DateTime Modified { get; set; }

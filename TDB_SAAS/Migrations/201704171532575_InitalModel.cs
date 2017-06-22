@@ -24,9 +24,9 @@ namespace TDB_SAAS.Migrations
                         ESRID = c.Int(),
                         MName = c.String(maxLength: 35, unicode: false),
                         Comments = c.String(unicode: false, storeType: "text"),
-                        CreatorID = c.Int(nullable: false),
+                        CreatorID = c.Int(),
                         Created = c.DateTime(nullable: false),
-                        ModifierID = c.Int(nullable: false),
+                        ModifierID = c.Int(),
                         Modified = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -47,14 +47,14 @@ namespace TDB_SAAS.Migrations
                         Title = c.String(nullable: false, maxLength: 15, unicode: false),
                         Genders = c.String(maxLength: 5, unicode: false),
                         DefaultGender = c.Byte(),
-                        CreatorID = c.Int(nullable: false),
+                        CreatorID = c.Int(),
                         Created = c.DateTime(nullable: false),
-                        ModifierID = c.Int(nullable: false),
+                        ModifierID = c.Int(),
                         Modified = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Staff", t => t.CreatorID, cascadeDelete: false)
-                .ForeignKey("dbo.Staff", t => t.ModifierID, cascadeDelete: false)
+                .ForeignKey("dbo.Staff", t => t.CreatorID)
+                .ForeignKey("dbo.Staff", t => t.ModifierID)
                 .Index(t => t.CreatorID)
                 .Index(t => t.ModifierID);
             

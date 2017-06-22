@@ -169,6 +169,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,12 +178,17 @@
     <Compile Include="Migrations\201704171532575_InitalModel.Designer.cs">
       <DependentUpon>201704171532575_InitalModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705181652316_InitialData.cs" />
+    <Compile Include="Migrations\201705181652316_InitialData.Designer.cs">
+      <DependentUpon>201705181652316_InitialData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Title.cs" />
     <Compile Include="Models\TrainDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\PersonFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -221,6 +228,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Views\Person\PersonForm.cshtml" />
+    <Content Include="Views\Title\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -236,6 +246,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704171532575_InitalModel.resx">
       <DependentUpon>201704171532575_InitalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705181652316_InitialData.resx">
+      <DependentUpon>201705181652316_InitialData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

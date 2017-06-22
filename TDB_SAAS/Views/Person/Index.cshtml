@@ -1,0 +1,22 @@
+﻿@model List<TDB_SAAS.Models.Person>
+@{
+    ViewBag.Title = "People";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Staff</h2>
+
+@Html.ActionLink("New Staff Member", "New", "Person", new { @class = "btn btn-default" })
+
+<table>
+
+
+@foreach (var person in Model)
+{
+    <tr>
+    <td>@Html.ActionLink(person.GetFullName(), "Edit", "Person", new { id = person.ID }, null) </td>
+    <td>@person.Gender</td>
+    <td>@person.JobTitle</td></tr>
+}
+    
+</table>

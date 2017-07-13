@@ -33,5 +33,18 @@ namespace TDB_SAAS.Models
         public virtual Person Modifier { get; set; }
 
         public DateTime Modified { get; set; }
+
+        public List<Gender> AllowedGenders
+        {
+            get
+            {
+                List<Gender> genlist = new List<Gender>();
+                foreach (string s in AvailGenders.Split(';'))
+                {
+                    genlist.Add((Gender)Enum.Parse(typeof(Gender), s));
+                }
+                return genlist;
+            }
+        }
     }
 }

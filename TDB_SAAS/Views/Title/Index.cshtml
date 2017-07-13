@@ -6,15 +6,17 @@
 
 <h2>Titles</h2>
 
-<table>
-
+<table class="table table-striped">
+    <tr><th>Title</th><th>Permitted Genders</th><th>Default Gender</th></tr>
 
     @foreach (var title in Model)
     {
         <tr>
-            <td>@Html.ActionLink(title.TitleValue, "Edit", "Person", new { id = title.ID }, null) </td>
-            <td>@title.AvailGenders</td>
-            <td>@title.DefaultGender</td>
+            <td>@Html.ActionLink(title.TitleValue, "Edit", "Title", new { id = title.ID }, null) </td>
+            <td>@foreach (var gender in title.AllowedGenders)
+            { @gender <br/>
+            }</td>
+            <td>@(title.DefaultGender==0?null:title.DefaultGender)</td>
         </tr>
     }
 

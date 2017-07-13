@@ -9,52 +9,58 @@
 @using (Html.BeginForm("Save", "Person"))
 {
     @Html.ValidationSummary(true, "Please correct the highlighted fields");
-    <div class="form-group">
-        @Html.LabelFor(m => m.Person.TitleID)
-        @Html.DropDownListFor(m => m.Person.TitleID, new SelectList(Model.Titles, "ID", "TitleValue"), "Select Title", new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Person.Forename)
-        @Html.TextBoxFor(m => m.Person.Forename, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Person.Forename)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Person.MiddleName)
-        @Html.TextBoxFor(m => m.Person.MiddleName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Person.MiddleName)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Person.Surname)
-        @Html.TextBoxFor(m => m.Person.Surname, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Person.Surname)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Person.PreferredName)
-        @Html.TextBoxFor(m => m.Person.PreferredName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Person.PreferredName)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Person.Gender)
-        @Html.EnumDropDownListFor(m => m.Person.Gender, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Person.JobTitle)
-        @Html.TextBoxFor(m => m.Person.JobTitle, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Person.JobTitle)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Person.Phone)
-        @Html.TextBoxFor(m => m.Person.Phone, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Person.Phone)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Person.Email)
-        @Html.TextBoxFor(m => m.Person.Email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Person.Email)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Person.Comments)
-        @Html.TextBoxFor(m => m.Person.Comments, new { @class = "form-control" })
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Person.TitleID)
+                @Html.DropDownListFor(m => m.Person.TitleID, new SelectList(Model.Titles, "ID", "TitleValue"), "Select Title", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Person.Forename)
+                @Html.TextBoxFor(m => m.Person.Forename, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Person.Forename)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Person.MiddleName)
+                @Html.TextBoxFor(m => m.Person.MiddleName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Person.MiddleName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Person.Surname)
+                @Html.TextBoxFor(m => m.Person.Surname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Person.Surname)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Person.PreferredName)
+                @Html.TextBoxFor(m => m.Person.PreferredName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Person.PreferredName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Person.Gender)
+                @Html.EnumDropDownListFor(m => m.Person.Gender, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Person.JobTitle)
+                @Html.TextBoxFor(m => m.Person.JobTitle, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Person.JobTitle)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Person.Phone)
+                @Html.TextBoxFor(m => m.Person.Phone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Person.Phone)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Person.Email)
+                @Html.TextBoxFor(m => m.Person.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Person.Email)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Person.Comments)
+                @Html.TextBoxFor(m => m.Person.Comments, new { @class = "form-control" })
+            </div>
+        </div>
     </div>
     @Html.HiddenFor(m => m.Person.ID)
     @Html.AntiForgeryToken()

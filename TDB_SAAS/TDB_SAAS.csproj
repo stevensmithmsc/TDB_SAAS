@@ -189,6 +189,7 @@
     <Compile Include="Models\TrainDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\PersonFormViewModel.cs" />
+    <Compile Include="ViewModels\TitleFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -231,6 +232,7 @@
     <Content Include="Views\Person\Index.cshtml" />
     <Content Include="Views\Person\PersonForm.cshtml" />
     <Content Include="Views\Title\Index.cshtml" />
+    <Content Include="Views\Title\TitleForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,42 @@
+﻿@model TDB_SAAS.ViewModels.TitleFormViewModel
+@{
+    ViewBag.Title = "Title Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TitleForm</h2>
+
+@using (Html.BeginForm("Save", "Title"))
+{
+    @Html.ValidationSummary(true, "Please correct the highlighted fields");
+    <div class="form-group">
+        @Html.LabelFor(m => m.TitleValue)
+        @Html.TextBoxFor(m => m.TitleValue, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TitleValue)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DefaultGender)
+        @Html.EnumDropDownListFor(m => m.DefaultGender, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.DefaultGender)
+    </div>
+    <div class="form-group">
+        <h3>Permitted Genders: </h3>
+                @for (int i = 0; i < Model.Genders.Count(); i++)
+                {
+                    <div class="checkbox-inline">
+                        @Html.HiddenFor(m => m.Genders[i].GID)
+                        @Html.CheckBoxFor(m => m.Genders[i].Selected, new { id = "GID_" + i} )
+                        @Html.LabelFor(m => m.Genders[i].Selected, Model.Genders[i].Value)
+                    </div>
+        }
+    </div>
+    @Html.HiddenFor(m => m.ID)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

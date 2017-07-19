@@ -15,7 +15,9 @@ namespace TDB_SAAS.ViewModels
         [Display(Name = "Title")]
         public string TitleValue { get; set; }
         [Display(Name = "Default Gender")]
+        [DefaultGenderInAllowedGenders]
         public Nullable<Gender> DefaultGender { get; set; }
+        [DefaultGenderInAllowedGenders]
         public GenderSelector[] Genders { get; set; }
 
         public TitleFormViewModel(Title title)

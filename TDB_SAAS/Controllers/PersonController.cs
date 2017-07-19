@@ -28,8 +28,10 @@ namespace TDB_SAAS.Controllers
             var titles = _context.Titles.ToList();
             var viewModel = new PersonFormViewModel
             {
+                Person = new Person(),
                 Titles = titles
             };
+            
 
             return View("PersonForm", viewModel);
         }
@@ -53,6 +55,10 @@ namespace TDB_SAAS.Controllers
             
             if (person.ID == 0)
             {
+                if(person.TitleID != 0 && person.Gender == null)
+                {
+                    person.Gender = _context.Titles.SingleOrDefault(t => t.ID == person.TitleID).DefaultGender;
+                }
                 person.Created = DateTime.Now;
                 person.Creator = userperson;
                 person.Modified = DateTime.Now;

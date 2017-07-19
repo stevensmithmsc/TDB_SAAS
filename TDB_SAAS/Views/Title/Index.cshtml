@@ -14,7 +14,8 @@
         <tr>
             <td>@Html.ActionLink(title.TitleValue, "Edit", "Title", new { id = title.ID }, null) </td>
             <td>@foreach (var gender in title.AllowedGenders)
-            { @gender <br/>
+            { 
+                @gender <br/>
             }</td>
             <td>@(title.DefaultGender==0?null:title.DefaultGender)</td>
         </tr>

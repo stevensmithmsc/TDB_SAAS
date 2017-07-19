@@ -14,6 +14,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Person.TitleID)
                 @Html.DropDownListFor(m => m.Person.TitleID, new SelectList(Model.Titles, "ID", "TitleValue"), "Select Title", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Person.Title)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Person.Forename)
@@ -38,6 +39,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Person.Gender)
                 @Html.EnumDropDownListFor(m => m.Person.Gender, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Person.Gender)
             </div>
         </div>
         <div class="col-md-4">
@@ -59,12 +61,14 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Person.Comments)
                 @Html.TextBoxFor(m => m.Person.Comments, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Person.Comments)
             </div>
         </div>
     </div>
     @Html.HiddenFor(m => m.Person.ID)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
+    @Html.ValidationMessageFor(m => m.Person.ID)
 }
 
 @section scripts

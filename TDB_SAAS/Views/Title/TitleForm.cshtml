@@ -27,8 +27,10 @@
                         @Html.HiddenFor(m => m.Genders[i].GID)
                         @Html.CheckBoxFor(m => m.Genders[i].Selected, new { id = "GID_" + i} )
                         @Html.LabelFor(m => m.Genders[i].Selected, Model.Genders[i].Value)
+                        @Html.HiddenFor(m => m.Genders[i].Value)
                     </div>
         }
+        @Html.ValidationMessageFor(m => m.Genders)
     </div>
     @Html.HiddenFor(m => m.ID)
     @Html.AntiForgeryToken()

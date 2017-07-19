@@ -23,6 +23,8 @@ namespace TDB_SAAS.Models
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
         public virtual DbSet<Flag> Flags { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<CFlag> CFlags { get; set; }
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,6 +32,8 @@ namespace TDB_SAAS.Models
             modelBuilder.Configurations.Add(new PersonConfiguration());
             modelBuilder.Configurations.Add(new TitleConfiguration());
             modelBuilder.Configurations.Add(new FlagConfiguration());
+            modelBuilder.Configurations.Add(new CourseConfiguration());
+            modelBuilder.Configurations.Add(new CFlagConfiguration());
         }
     }
 

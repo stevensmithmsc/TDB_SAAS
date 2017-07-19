@@ -62,6 +62,8 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Person> PeopleCreated { get; set; }
         public virtual ICollection<Title> TitlesCreated { get; set; }
         public virtual ICollection<Flag> FlagsCreated { get; set; }
+        public virtual ICollection<Course> CoursesCreated { get; set; }
+        public virtual ICollection<CFlag> CFlagsCreated { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -72,6 +74,8 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Person> PeopleModified { get; set; }
         public virtual ICollection<Title> TitlesModified { get; set; }
         public virtual ICollection<Flag> FlagsModified { get; set; }
+        public virtual ICollection<Course> CoursesModified { get; set; }
+        public virtual ICollection<CFlag> CFlagsModified { get; set; }
 
         public DateTime Modified { get; set; }
 
@@ -87,9 +91,10 @@ namespace TDB_SAAS.Models
             TitlesModified = new HashSet<Title>();
             FlagsCreated = new HashSet<Flag>();
             FlagsModified = new HashSet<Flag>();
-            Created = DateTime.Now;
-            Modified = DateTime.Now;
-
+            CoursesCreated = new HashSet<Course>();
+            CoursesModified = new HashSet<Course>();
+            CFlagsCreated = new HashSet<CFlag>();
+            CFlagsModified = new HashSet<CFlag>();
         }
 
         public string GetFullName()

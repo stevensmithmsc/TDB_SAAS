@@ -182,9 +182,21 @@
     <Compile Include="Migrations\201705181652316_InitialData.Designer.cs">
       <DependentUpon>201705181652316_InitialData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707191012119_AddFlags.cs" />
+    <Compile Include="Migrations\201707191012119_AddFlags.Designer.cs">
+      <DependentUpon>201707191012119_AddFlags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707191201299_CreateInitalFlags.cs" />
+    <Compile Include="Migrations\201707191201299_CreateInitalFlags.Designer.cs">
+      <DependentUpon>201707191201299_CreateInitalFlags.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\EntityConfigurations\FlagConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\PersonConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\TitleConfiguration.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Flag.cs" />
     <Compile Include="Models\Title.cs" />
     <Compile Include="Models\TrainDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -252,6 +264,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705181652316_InitialData.resx">
       <DependentUpon>201705181652316_InitialData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707191012119_AddFlags.resx">
+      <DependentUpon>201707191012119_AddFlags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707191201299_CreateInitalFlags.resx">
+      <DependentUpon>201707191201299_CreateInitalFlags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,6 +3,7 @@ namespace TDB_SAAS.Models
     using System;
     using System.Data.Entity;
     using System.Linq;
+    using TDB_SAAS.Models.EntityConfigurations;
 
     public class TrainDB : DbContext
     {
@@ -21,7 +22,15 @@ namespace TDB_SAAS.Models
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
+        public virtual DbSet<Flag> Flags { get; set; }
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new PersonConfiguration());
+            modelBuilder.Configurations.Add(new TitleConfiguration());
+            modelBuilder.Configurations.Add(new FlagConfiguration());
+        }
     }
 
     //public class MyEntity

@@ -26,11 +26,9 @@ namespace TDB_SAAS.Controllers
         public ActionResult New()
         {
             var titles = _context.Titles.ToList();
-            var viewModel = new PersonFormViewModel
-            {
-                Person = new Person(),
-                Titles = titles
-            };
+            var flags = _context.Flags.ToList();
+            var viewModel = new PersonFormViewModel(new Person(), titles, flags);
+            ;
             
 
             return View("PersonForm", viewModel);
@@ -38,27 +36,40 @@ namespace TDB_SAAS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Person person)
+        public ActionResult Save(PersonFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new PersonFormViewModel
-                {
-                    Person = person,
-                    Titles = _context.Titles.ToList()
-                };
-
+                viewModel.Titles = _context.Titles.ToList();
                 return View("PersonForm", viewModel);
             }
 
             Person userperson = _context.People.SingleOrDefault(p => p.ID == 0);
             
-            if (person.ID == 0)
+            if (viewModel.ID == 0)
             {
-                if(person.TitleID != 0 && person.Gender == null)
+                Person person = new Person();
+
+                person.TitleID = viewModel.TitleID;
+                person.Forename = viewModel.Forename;
+                person.MiddleName = viewModel.MiddleName;
+                person.Surname = viewModel.Surname;
+                person.PreferredName = viewModel.PreferredName;
+                person.Gender = viewModel.Gender;
+                person.JobTitle = viewModel.JobTitle;
+                person.Phone = viewModel.Phone;
+                person.Email = viewModel.Email;
+                person.Comments = viewModel.Comments;
+                foreach(var fs in viewModel.Flags.Where(f => f.Selected))
+                {
+                    person.Flags.Add(_context.Flags.Single(f => f.ID == fs.Flag.ID));
+                }
+
+                if (person.TitleID != 0 && person.Gender == null)
                 {
                     person.Gender = _context.Titles.SingleOrDefault(t => t.ID == person.TitleID).DefaultGender;
                 }
+
                 person.Created = DateTime.Now;
                 person.Creator = userperson;
                 person.Modified = DateTime.Now;
@@ -67,18 +78,33 @@ namespace TDB_SAAS.Controllers
             }
             else
             {
-                var personInDb = _context.People.Single(p => p.ID == person.ID);
+                var personInDb = _context.People.Single(p => p.ID == viewModel.ID);
 
-                personInDb.Title = person.Title;
-                personInDb.Forename = person.Forename;
-                personInDb.MiddleName = person.MiddleName;
-                personInDb.Surname = person.Surname;
-                personInDb.PreferredName = person.PreferredName;
-                personInDb.Gender = person.Gender;
-                personInDb.JobTitle = person.JobTitle;
-                personInDb.Phone = person.Phone;
-                personInDb.Email = person.Email;
-                personInDb.Comments = person.Comments;
+                personInDb.TitleID = viewModel.TitleID;
+                personInDb.Forename = viewModel.Forename;
+                personInDb.MiddleName = viewModel.MiddleName;
+                personInDb.Surname = viewModel.Surname;
+                personInDb.PreferredName = viewModel.PreferredName;
+                personInDb.Gender = viewModel.Gender;
+                personInDb.JobTitle = viewModel.JobTitle;
+                personInDb.Phone = viewModel.Phone;
+                personInDb.Email = viewModel.Email;
+                personInDb.Comments = viewModel.Comments;
+
+                foreach (var fs in viewModel.Flags)
+                {
+                    Flag flg = _context.Flags.Single(f => f.ID == fs.Flag.ID);
+                    if (fs.Selected)
+                    {
+                        if (!personInDb.Flags.Contains(flg)) personInDb.Flags.Add(flg);
+                    } else
+                    {
+                        if (personInDb.Flags.Contains(flg)) personInDb.Flags.Remove(flg);
+                    }
+
+                    
+                }
+
                 personInDb.Modified = DateTime.Now;
                 personInDb.Modifier = userperson;
             }
@@ -93,11 +119,7 @@ namespace TDB_SAAS.Controllers
             var person = _context.People.SingleOrDefault(p => p.ID == id);
             if (person == null) return HttpNotFound();
 
-            var viewModel = new PersonFormViewModel
-            {
-                Person = person,
-                Titles = _context.Titles.ToList()
-            };
+            var viewModel = new PersonFormViewModel(person, _context.Titles.ToList(), _context.Flags.ToList());
 
             return View("PersonForm", viewModel);
         }

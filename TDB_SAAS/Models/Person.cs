@@ -87,6 +87,9 @@ namespace TDB_SAAS.Models
             TitlesModified = new HashSet<Title>();
             FlagsCreated = new HashSet<Flag>();
             FlagsModified = new HashSet<Flag>();
+            Created = DateTime.Now;
+            Modified = DateTime.Now;
+
         }
 
         public string GetFullName()

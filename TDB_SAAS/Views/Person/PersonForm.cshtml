@@ -1,10 +1,17 @@
 ﻿@model TDB_SAAS.ViewModels.PersonFormViewModel
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = Model.ID == 0 ? "New Person" : Model.DisplayName;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Person</h2>
+@if (Model.ID == 0)
+{
+    <h2>New Person</h2>
+}
+else
+{
+    <h2>Edit Person: @Model.DisplayName</h2>
+}
 
 @using (Html.BeginForm("Save", "Person"))
 {
@@ -12,63 +19,75 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                @Html.LabelFor(m => m.Person.TitleID)
-                @Html.DropDownListFor(m => m.Person.TitleID, new SelectList(Model.Titles, "ID", "TitleValue"), "Select Title", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Person.Title)
+                @Html.LabelFor(m => m.TitleID)
+                @Html.DropDownListFor(m => m.TitleID, new SelectList(Model.Titles, "ID", "TitleValue"), "Select Title", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.TitleID)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Person.Forename)
-                @Html.TextBoxFor(m => m.Person.Forename, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Person.Forename)
+                @Html.LabelFor(m => m.Forename)
+                @Html.TextBoxFor(m => m.Forename, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Forename)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Person.MiddleName)
-                @Html.TextBoxFor(m => m.Person.MiddleName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Person.MiddleName)
+                @Html.LabelFor(m => m.MiddleName)
+                @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.MiddleName)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Person.Surname)
-                @Html.TextBoxFor(m => m.Person.Surname, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Person.Surname)
+                @Html.LabelFor(m => m.Surname)
+                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Surname)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Person.PreferredName)
-                @Html.TextBoxFor(m => m.Person.PreferredName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Person.PreferredName)
+                @Html.LabelFor(m => m.PreferredName)
+                @Html.TextBoxFor(m => m.PreferredName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.PreferredName)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Person.Gender)
-                @Html.EnumDropDownListFor(m => m.Person.Gender, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Person.Gender)
+                @Html.LabelFor(m => m.Gender)
+                @Html.EnumDropDownListFor(m => m.Gender, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Gender)
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                @Html.LabelFor(m => m.Person.JobTitle)
-                @Html.TextBoxFor(m => m.Person.JobTitle, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Person.JobTitle)
+                @Html.LabelFor(m => m.JobTitle)
+                @Html.TextBoxFor(m => m.JobTitle, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.JobTitle)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Person.Phone)
-                @Html.TextBoxFor(m => m.Person.Phone, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Person.Phone)
+                @Html.LabelFor(m => m.Phone)
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Phone)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Person.Email)
-                @Html.TextBoxFor(m => m.Person.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Person.Email)
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Person.Comments)
-                @Html.TextBoxFor(m => m.Person.Comments, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Person.Comments)
+                @Html.LabelFor(m => m.Comments)
+                @Html.TextAreaFor(m => m.Comments, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Comments)
+            </div>
+            <div class="form-group">
+                @for (int i = 0; i < Model.Flags.Count(); i++)
+                {
+                    <div class="checkbox">
+                        @Html.HiddenFor(m => m.Flags[i].Flag.ID)
+                        @Html.CheckBoxFor(m => m.Flags[i].Selected)
+                        @Html.LabelFor(m => m.Flags[i].Selected, Model.Flags[i].Flag.TheFlag)
+                        @Html.HiddenFor(m => m.Flags[i].Flag.TheFlag)
+                    </div>
+                }
+                @Html.ValidationMessageFor(m => m.Flags)
             </div>
         </div>
     </div>
-    @Html.HiddenFor(m => m.Person.ID)
+    @Html.HiddenFor(m => m.ID)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
-    @Html.ValidationMessageFor(m => m.Person.ID)
+    @Html.ValidationMessageFor(m => m.ID)
 }
 
 @section scripts

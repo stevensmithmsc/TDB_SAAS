@@ -11,8 +11,6 @@ namespace TDB_SAAS.ViewModels
     {
         public IEnumerable<Title> Titles { get; set; }
 
-        public Person Person { get; set; }
-
         public int ID { get; set; }
 
         [Display(Name = "Title")]

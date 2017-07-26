@@ -1,0 +1,86 @@
+﻿@model TDB_SAAS.ViewModels.CourseFormViewModel
+@{
+    ViewBag.Title = "CourseForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.ID == 0)
+{
+    <h2>New Course</h2>
+}
+else
+{
+    <h2>Edit Course: @Model.CourseName</h2>
+}
+
+@using (Html.BeginForm("Save", "Course"))
+{
+    @Html.ValidationSummary(true, "Please correct the highlighted fields");
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(c => c.CourseName)
+                @Html.TextBoxFor(c => c.CourseName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.CourseName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Length)
+                @Html.TextBoxFor(c => c.Length, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Length)
+            </div>
+            <div class="form-group">                
+                @Html.LabelFor(c => c.Notes)
+                @Html.TextAreaFor(c => c.Notes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Notes)
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @for (int i = 0; i < Model.Flags.Count(); i++)
+                {
+                    <div class="checkbox">
+                        @Html.HiddenFor(c => c.Flags[i].Flag.ID)
+                        @Html.CheckBoxFor(c => c.Flags[i].Selected)
+                        @Html.LabelFor(c => c.Flags[i].Selected, Model.Flags[i].Flag.TheFlag)
+                        @Html.HiddenFor(c => c.Flags[i].Flag.TheFlag)
+                    </div>
+                }
+                @Html.ValidationMessageFor(c => c.Flags)
+            </div>
+        </div>
+        <div class="col-md-2">
+            <h4>Pre-Reqs</h4>
+            <div class="form-group">
+                @for (int i = 0; i < Model.PreReqs.Count(); i++)
+                {
+                    <div class="checkbox">
+                        @Html.HiddenFor(c => c.PreReqs[i].PreReq.ID)
+                        @Html.CheckBoxFor(c => c.PreReqs[i].Selected)
+                        @Html.LabelFor(c => c.PreReqs[i].Selected, Model.PreReqs[i].PreReq.CourseName)
+                        @Html.HiddenFor(c => c.PreReqs[i].PreReq.CourseName)
+                    </div>
+                }
+                @Html.ValidationMessageFor(c => c.Flags)
+            </div>
+        </div>
+        <div class="col-md-2">
+            <h4>Required For</h4>
+            <ul>
+                @foreach (var c in Model.ReqFor)
+                {
+                    <li>@c.CourseName</li> 
+                }
+            </ul>
+        </div>
+    </div>
+    @Html.HiddenFor(c => c.ID)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+    @Html.ValidationMessageFor(c => c.ID)
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

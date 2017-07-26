@@ -1,0 +1,42 @@
+﻿@model List<TDB_SAAS.Models.Course>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Courses</h2>
+
+@Html.ActionLink("New Course", "New", "Course", new { @class = "btn btn-default" })
+
+<table class="table table-striped">
+
+    <thead><tr>
+        <td>@Html.LabelFor(c => c.First().CourseName)</td>
+        <td>@Html.LabelFor(c => c.First().Length)</td>
+        <td>@Html.LabelFor(c => c.First().NumberRequired)</td>
+        <td>@Html.LabelFor(c => c.First().PlacesAvailable)</td>
+        <td>@Html.LabelFor(c => c.First().PlacesBooked)</td>
+        <td>@Html.LabelFor(c => c.First().NumberCompleted)</td>
+        <td>@Html.LabelFor(c => c.First().Flags)</td>
+        </tr></thead>
+    @foreach (var course in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(course.CourseName, "Edit", "Course", new { id = course.ID }, null) </td>
+            <td>@course.Length</td>
+            <td>@course.NumberRequired</td>
+            <td>@course.PlacesAvailable</td>
+            <td>@course.PlacesBooked</td>
+            <td>@course.NumberCompleted</td>
+            <td>
+                @foreach (var flag in course.Flags)
+            {
+                @flag.TheFlag <br />
+            }
+            </td>
+
+        </tr>
+    }
+
+</table>
+

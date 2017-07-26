@@ -4,14 +4,15 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<p>The IT Training Admin team can be contacted on 0161 716 3320, via <a href="mailto:pcn-tr.PennineCareTraining@nhs.net">e-mail</a> or by completing the form below.</p>
+<hr />
+@Html.ValidationSummary()
+<form method="post">
+    <input type="hidden" name="teams" value="" />
+    <p>Name: <input type="text" name="Name" value="" /></p>
+    <p>Email: <input type="email" name="Email" value="" /></p>
+    <p>Telephone: <input type="tel" name="Tel" value="" /></p>
+    <p>Subject: <input type="text" name="Sub" /></p>
+    <p>Message:<br /><textarea name="Message" rows="5" cols="80"></textarea></p>
+    <p><input type="submit" value="Send" class="btn btn-default" /></p>
+</form>

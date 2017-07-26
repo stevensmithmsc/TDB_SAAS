@@ -30,3 +30,8 @@ textarea {
 .input-validation-error {
     border: 2px solid red;
 }
+
+A:link { color: #283c96; text-decoration: none }
+A:active { color: purple; text-decoration: none }
+A:visited { color: #b91e7d; text-decoration: none }
+A:hover { text-decoration: underline }

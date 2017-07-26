@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace TDB_SAAS.Models
     {
         public int ID { get; set; }
 
+        [Display(Name = "Course Name")]
         public string CourseName { get; set; }
 
         public Nullable<short> Length { get; set; }
@@ -28,16 +30,6 @@ namespace TDB_SAAS.Models
 
         //public Nullable<int> EmptyColour { get; set; }
 
-        //public bool External { get; set; }
-
-        //public Nullable<bool> Paris { get; set; }
-
-        //public bool Obselete { get; set; }
-
-        //public bool Child_Health { get; set; }
-
-        //public bool BAU { get; set; }
-
         public int CreatorID { get; set; }
         public virtual Person Creator { get; set; }
 
@@ -47,6 +39,11 @@ namespace TDB_SAAS.Models
         public virtual Person Modifier { get; set; }
 
         public DateTime Modified { get; set; }
+
+        public int NumberRequired { get { return 0; } }
+        public int NumberCompleted { get { return 0; } }
+        public int PlacesAvailable { get { return 0; } }
+        public int PlacesBooked { get { return 0; } }
 
         public Course()
         {

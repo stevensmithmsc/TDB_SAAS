@@ -8,8 +8,9 @@ namespace TDB_SAAS.Models
 {
     public class CFlag
     {
-        [Display(Name = "Code")]
-        public String ID { get; set; }
+        public int ID { get; set; }
+        
+        public String Code { get; set; }
 
         [Display(Name = "Description")]
         public String TheFlag { get; set; }

@@ -168,6 +168,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
@@ -198,6 +199,10 @@
     <Compile Include="Migrations\201707191708369_AddCourseFlagsToDB.Designer.cs">
       <DependentUpon>201707191708369_AddCourseFlagsToDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707261244235_FixCourseFlags.cs" />
+    <Compile Include="Migrations\201707261244235_FixCourseFlags.Designer.cs">
+      <DependentUpon>201707261244235_FixCourseFlags.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CFlag.cs" />
     <Compile Include="Models\EntityConfigurations\CFlagConfiguration.cs" />
@@ -212,6 +217,7 @@
     <Compile Include="Models\Title.cs" />
     <Compile Include="Models\TrainDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CourseFormViewModel.cs" />
     <Compile Include="ViewModels\DefaultGenderInAllowedGenders.cs" />
     <Compile Include="ViewModels\PersonFormViewModel.cs" />
     <Compile Include="ViewModels\TitleFormViewModel.cs" />
@@ -258,6 +264,8 @@
     <Content Include="Views\Person\PersonForm.cshtml" />
     <Content Include="Views\Title\Index.cshtml" />
     <Content Include="Views\Title\TitleForm.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\CourseForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -288,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707191708369_AddCourseFlagsToDB.resx">
       <DependentUpon>201707191708369_AddCourseFlagsToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707261244235_FixCourseFlags.resx">
+      <DependentUpon>201707261244235_FixCourseFlags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

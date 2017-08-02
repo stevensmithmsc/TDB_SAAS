@@ -40,6 +40,8 @@ namespace TDB_SAAS.Models
 
         public DateTime Modified { get; set; }
 
+        public ICollection<Session> Sessions { get; set; }
+
         public int NumberRequired { get { return 0; } }
         public int NumberCompleted { get { return 0; } }
         public int PlacesAvailable { get { return 0; } }
@@ -50,6 +52,7 @@ namespace TDB_SAAS.Models
             this.PreReqs = new HashSet<Course>();
             this.ReqFor = new HashSet<Course>();
             this.Flags = new HashSet<CFlag>();
+            this.Sessions = new HashSet<Session>();
         }
     }
 }

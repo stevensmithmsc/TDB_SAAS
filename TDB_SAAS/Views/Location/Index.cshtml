@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TDB_SAAS.Models.Location>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Locations</h2>
+
+@Html.ActionLink("New Location", "New", "Location", new { @class = "btn btn-default" })
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(l => l.First().LocationName)</td>
+            <td>@Html.LabelFor(l => l.First().TLoc)</td>
+            <td>@Html.LabelFor(l => l.First().MaxP)</td>
+            <td>@Html.LabelFor(l => l.First().Comments)</td>
+        </tr>
+    </thead>
+    @foreach (var location in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(@location.LocationName, "Edit", "Location", new { id = location.ID }, null) </td>
+            <td>@location.TLoc</td>
+            <td>@location.MaxP</td>
+            <td>@location.Comments</td>
+        </tr>
+    }
+
+</table>
+
+

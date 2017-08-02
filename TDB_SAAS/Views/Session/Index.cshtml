@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TDB_SAAS.Models.Session>
+@{
+    ViewBag.Title = "Sessions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sessions</h2>
+
+@Html.ActionLink("New Course", "New", "Session", new { @class = "btn btn-default" })
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(s => s.First().Course)</td>
+            <td>@Html.LabelFor(s => s.First().Trainer)</td>
+            <td>@Html.LabelFor(s => s.First().Location)</td>
+            <td>@Html.LabelFor(s => s.First().Strt)</td>
+            <td>@Html.LabelFor(s => s.First().Endt)</td>
+            <td>@Html.LabelFor(s => s.First().Bookings)</td>
+            <td>@Html.LabelFor(s => s.First().AvailablePlaces)</td>
+        </tr>
+    </thead>
+    @foreach (var session in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(@session.Course.CourseName, "Edit", "Session", new { id = session.ID }, null) </td>
+            <td>@session.Trainer.GetFullName()</td>
+            <td>@session.Location.LocationName</td>
+            <td>@session.Strt</td>
+            <td>@session.Endt</td>
+            <td>@session.Bookings</td>
+            <td>@session.AvailablePlaces</td>
+
+        </tr>
+    }
+
+</table>
+

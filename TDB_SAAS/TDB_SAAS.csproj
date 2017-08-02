@@ -170,6 +170,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
@@ -208,6 +209,10 @@
     <Compile Include="Migrations\201708020935157_AddSessionsToDB.Designer.cs">
       <DependentUpon>201708020935157_AddSessionsToDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708021227395_SessionChange.cs" />
+    <Compile Include="Migrations\201708021227395_SessionChange.Designer.cs">
+      <DependentUpon>201708021227395_SessionChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CFlag.cs" />
     <Compile Include="Models\EntityConfigurations\CFlagConfiguration.cs" />
@@ -229,7 +234,9 @@
     <Compile Include="ViewModels\CourseFormViewModel.cs" />
     <Compile Include="ViewModels\DefaultGenderInAllowedGenders.cs" />
     <Compile Include="ViewModels\PersonFormViewModel.cs" />
+    <Compile Include="ViewModels\SessionFormViewModel.cs" />
     <Compile Include="ViewModels\TitleFormViewModel.cs" />
+    <Compile Include="ViewModels\Trainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -275,10 +282,13 @@
     <Content Include="Views\Title\TitleForm.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\CourseForm.cshtml" />
+    <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Location\Index.cshtml" />
+    <Content Include="Views\Location\LocationForm.cshtml" />
+    <Content Include="Views\Session\SessionForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Session\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -312,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708020935157_AddSessionsToDB.resx">
       <DependentUpon>201708020935157_AddSessionsToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708021227395_SessionChange.resx">
+      <DependentUpon>201708021227395_SessionChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

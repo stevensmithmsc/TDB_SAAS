@@ -1,0 +1,62 @@
+﻿@model TDB_SAAS.ViewModels.SessionFormViewModel
+@{
+    ViewBag.Title = "SessionForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.ID == 0)
+{
+    <h2>New Session</h2>
+}
+else
+{
+    <h2>Edit Session: @Model.CourseDate</h2>
+}
+
+@using (Html.BeginForm("Save", "Session"))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.CourseID)
+                @Html.DropDownListFor(m => m.CourseID, new SelectList(Model.Courses, "ID", "CourseName"), "Select Course", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CourseID)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.TrainerID)
+                @Html.DropDownListFor(m => m.TrainerID, new SelectList(Model.Trainers, "ID", "Name"), "Select Trainer", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.TrainerID)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LocationID)
+                @Html.DropDownListFor(m => m.LocationID, new SelectList(Model.Locations, "ID", "LocationName"), "Select Course", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.LocationID)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CourseDate)
+                @Html.TextBoxFor(m => m.CourseDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CourseDate)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.StartTime)
+                @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.StartTime)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.EndTime)
+                @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.EndTime)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MaxP)
+                @Html.TextBoxFor(m => m.MaxP, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.MaxP)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Notes)
+                @Html.TextAreaFor(m => m.Notes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Notes)
+            </div>
+         </div>
+    </div>
+}

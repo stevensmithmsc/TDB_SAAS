@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,10 +10,13 @@ namespace TDB_SAAS.Models
     {
         public short ID { get; set; }
 
+        [Display(Name = "Location Name")]
         public string LocationName { get; set; }
 
+        [Display(Name = "Training Location")]
         public bool TLoc { get; set; }
 
+        [Display(Name = "Maximum People")]
         public Nullable<short> MaxP { get; set; }
 
         public string Comments { get; set; }

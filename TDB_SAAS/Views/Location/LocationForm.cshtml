@@ -1,0 +1,52 @@
+﻿@model TDB_SAAS.Models.Location
+@{
+    ViewBag.Title = "LocationForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.ID == 0)
+{
+    <h2>New Location</h2>
+}
+else
+{
+    <h2>Edit Location: @Model.LocationName</h2>
+}
+
+@using (Html.BeginForm("Save", "Location"))
+{
+    @Html.ValidationSummary(true, "Please correct the highlighted fields");
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(l => l.LocationName)
+                @Html.TextBoxFor(l => l.LocationName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(l => l.LocationName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(l => l.TLoc)
+                @Html.CheckBoxFor(l => l.TLoc, new { @class = "form-control" })
+                @Html.ValidationMessageFor(l => l.TLoc)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(l => l.MaxP)
+                @Html.TextBoxFor(l => l.MaxP, new { @class = "form-control" })
+                @Html.ValidationMessageFor(l => l.MaxP)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(l => l.Comments)
+                @Html.TextAreaFor(l => l.Comments, new { @class = "form-control" })
+                @Html.ValidationMessageFor(l => l.Comments)
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(l => l.ID)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+    @Html.ValidationMessageFor(l => l.ID)
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

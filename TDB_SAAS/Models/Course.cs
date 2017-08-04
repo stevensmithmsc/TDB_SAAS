@@ -42,6 +42,8 @@ namespace TDB_SAAS.Models
 
         public ICollection<Session> Sessions { get; set; }
 
+        public ICollection<Requirement> RequiredBy { get; set; }
+
         public int NumberRequired { get { return 0; } }
         public int NumberCompleted { get { return 0; } }
         public int PlacesAvailable { get { return 0; } }

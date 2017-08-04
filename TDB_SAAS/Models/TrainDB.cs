@@ -27,6 +27,9 @@ namespace TDB_SAAS.Models
         public virtual DbSet<CFlag> CFlags { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Status> Statuses { get; set; }
+        public virtual DbSet<Requirement> Requirements { get; set; }
+
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -38,6 +41,8 @@ namespace TDB_SAAS.Models
             modelBuilder.Configurations.Add(new CFlagConfiguration());
             modelBuilder.Configurations.Add(new SessionConfiguration());
             modelBuilder.Configurations.Add(new LocationConfiguration());
+            modelBuilder.Configurations.Add(new StatusConfiguration());
+            modelBuilder.Configurations.Add(new RequirementConfiguration());
         }
     }
 

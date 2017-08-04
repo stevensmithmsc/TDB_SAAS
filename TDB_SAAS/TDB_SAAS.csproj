@@ -209,9 +209,13 @@
     <Compile Include="Migrations\201708020935157_AddSessionsToDB.Designer.cs">
       <DependentUpon>201708020935157_AddSessionsToDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708021227395_SessionChange.cs" />
-    <Compile Include="Migrations\201708021227395_SessionChange.Designer.cs">
-      <DependentUpon>201708021227395_SessionChange.cs</DependentUpon>
+    <Compile Include="Migrations\201708041415572_StatusAndRequirementTables.cs" />
+    <Compile Include="Migrations\201708041415572_StatusAndRequirementTables.Designer.cs">
+      <DependentUpon>201708041415572_StatusAndRequirementTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708041431342_PopulateStatuses.cs" />
+    <Compile Include="Migrations\201708041431342_PopulateStatuses.Designer.cs">
+      <DependentUpon>201708041431342_PopulateStatuses.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CFlag.cs" />
@@ -221,13 +225,17 @@
     <Compile Include="Models\EntityConfigurations\FlagConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\LocationConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\PersonConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\RequirementConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\StatusConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\TitleConfiguration.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Flag.cs" />
+    <Compile Include="Models\Requirement.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\EntityConfigurations\SessionConfiguration.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Title.cs" />
     <Compile Include="Models\TrainDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -323,8 +331,11 @@
     <EmbeddedResource Include="Migrations\201708020935157_AddSessionsToDB.resx">
       <DependentUpon>201708020935157_AddSessionsToDB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708021227395_SessionChange.resx">
-      <DependentUpon>201708021227395_SessionChange.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708041415572_StatusAndRequirementTables.resx">
+      <DependentUpon>201708041415572_StatusAndRequirementTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708041431342_PopulateStatuses.resx">
+      <DependentUpon>201708041431342_PopulateStatuses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -59,4 +59,8 @@ else
             </div>
          </div>
     </div>
+    @Html.HiddenFor(s => s.ID)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+    @Html.ValidationMessageFor(s => s.ID)
 }

@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201708091204137_AddAttendancesToDB.Designer.cs">
       <DependentUpon>201708091204137_AddAttendancesToDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708091423360_AddTeamsToDB.cs" />
+    <Compile Include="Migrations\201708091423360_AddTeamsToDB.Designer.cs">
+      <DependentUpon>201708091423360_AddTeamsToDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\CFlag.cs" />
@@ -233,6 +237,8 @@
     <Compile Include="Models\EntityConfigurations\PersonConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\RequirementConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\StatusConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\TeamConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\TeamMemberConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\TitleConfiguration.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Location.cs" />
@@ -242,6 +248,8 @@
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\EntityConfigurations\SessionConfiguration.cs" />
     <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Models\Title.cs" />
     <Compile Include="Models\TrainDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -345,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708091204137_AddAttendancesToDB.resx">
       <DependentUpon>201708091204137_AddAttendancesToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091423360_AddTeamsToDB.resx">
+      <DependentUpon>201708091423360_AddTeamsToDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

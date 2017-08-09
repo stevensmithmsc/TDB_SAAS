@@ -1,8 +1,6 @@
 namespace TDB_SAAS.Models
 {
-    using System;
     using System.Data.Entity;
-    using System.Linq;
     using TDB_SAAS.Models.EntityConfigurations;
 
     public class TrainDB : DbContext
@@ -30,6 +28,8 @@ namespace TDB_SAAS.Models
         public virtual DbSet<Status> Statuses { get; set; }
         public virtual DbSet<Requirement> Requirements { get; set; }
         public virtual DbSet<Attendance> Attendances { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<TeamMember> TeamMembers { get; set; }
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
@@ -45,6 +45,8 @@ namespace TDB_SAAS.Models
             modelBuilder.Configurations.Add(new StatusConfiguration());
             modelBuilder.Configurations.Add(new RequirementConfiguration());
             modelBuilder.Configurations.Add(new AttendanceConfiguration());
+            modelBuilder.Configurations.Add(new TeamConfiguration());
+            modelBuilder.Configurations.Add(new TeamMemberConfiguration());
         }
     }
 

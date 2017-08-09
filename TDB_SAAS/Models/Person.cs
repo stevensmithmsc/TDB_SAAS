@@ -69,6 +69,8 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Status> StatusesCreated { get; set; }
         public virtual ICollection<Requirement> RequirementsCreated { get; set; }
         public virtual ICollection<Attendance> AttendancesBooked { get; set; }
+        public virtual ICollection<Team> TeamsCreated { get; set; }
+        public virtual ICollection<TeamMember> TeamMembersCreated { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -87,6 +89,8 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Requirement> RequirementsModified { get; set; }
         public virtual ICollection<Attendance> AttendancesCancelled { get; set; }
         public virtual ICollection<Attendance> AttendancesModified { get; set; }
+        public virtual ICollection<Team> TeamsModified { get; set; }
+        public virtual ICollection<TeamMember> TeamMembersModified { get; set; }
 
         public DateTime Modified { get; set; }
 
@@ -97,6 +101,10 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Requirement> Requirements { get; set; }
 
         public virtual ICollection<Attendance> Attendances { get; set; }
+
+        public virtual ICollection<Team> LeaderOf { get; set; }
+
+        public virtual ICollection<TeamMember> MemberOf { get; set; }
 
         public Person()
         {
@@ -126,6 +134,12 @@ namespace TDB_SAAS.Models
             AttendancesBooked = new HashSet<Attendance>();
             AttendancesCancelled = new HashSet<Attendance>();
             AttendancesModified = new HashSet<Attendance>();
+            TeamsCreated = new HashSet<Team>();
+            TeamsModified = new HashSet<Team>();
+            LeaderOf = new HashSet<Team>();
+            MemberOf = new HashSet<TeamMember>();
+            TeamMembersCreated = new HashSet<TeamMember>();
+            TeamMembersModified = new HashSet<TeamMember>();
         }
 
         public string GetFullName()

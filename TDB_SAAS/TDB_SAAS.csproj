@@ -225,10 +225,20 @@
     <Compile Include="Migrations\201708091423360_AddTeamsToDB.Designer.cs">
       <DependentUpon>201708091423360_AddTeamsToDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708091511476_AddBoroughsToDB.cs" />
+    <Compile Include="Migrations\201708091511476_AddBoroughsToDB.Designer.cs">
+      <DependentUpon>201708091511476_AddBoroughsToDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091518511_PopulateBoroughsTable.cs" />
+    <Compile Include="Migrations\201708091518511_PopulateBoroughsTable.Designer.cs">
+      <DependentUpon>201708091518511_PopulateBoroughsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Borough.cs" />
     <Compile Include="Models\CFlag.cs" />
     <Compile Include="Models\EntityConfigurations\AttendanceConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\BoroughConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\CFlagConfiguration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\EntityConfigurations\CourseConfiguration.cs" />
@@ -356,6 +366,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708091423360_AddTeamsToDB.resx">
       <DependentUpon>201708091423360_AddTeamsToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091511476_AddBoroughsToDB.resx">
+      <DependentUpon>201708091511476_AddBoroughsToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091518511_PopulateBoroughsTable.resx">
+      <DependentUpon>201708091518511_PopulateBoroughsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

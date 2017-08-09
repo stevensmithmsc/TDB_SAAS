@@ -71,6 +71,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Attendance> AttendancesBooked { get; set; }
         public virtual ICollection<Team> TeamsCreated { get; set; }
         public virtual ICollection<TeamMember> TeamMembersCreated { get; set; }
+        public virtual ICollection<Borough> BoroughsCreated { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -91,6 +92,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Attendance> AttendancesModified { get; set; }
         public virtual ICollection<Team> TeamsModified { get; set; }
         public virtual ICollection<TeamMember> TeamMembersModified { get; set; }
+        public virtual ICollection<Borough> BoroughsModified { get; set; }
 
         public DateTime Modified { get; set; }
 
@@ -105,6 +107,8 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Team> LeaderOf { get; set; }
 
         public virtual ICollection<TeamMember> MemberOf { get; set; }
+
+        public virtual ICollection<Borough> Boroughs { get; set; }
 
         public Person()
         {
@@ -140,6 +144,9 @@ namespace TDB_SAAS.Models
             MemberOf = new HashSet<TeamMember>();
             TeamMembersCreated = new HashSet<TeamMember>();
             TeamMembersModified = new HashSet<TeamMember>();
+            Boroughs = new HashSet<Borough>();
+            BoroughsCreated = new HashSet<Borough>();
+            BoroughsModified = new HashSet<Borough>();
         }
 
         public string GetFullName()

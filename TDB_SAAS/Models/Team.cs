@@ -26,6 +26,8 @@ namespace TDB_SAAS.Models
 
         public ICollection<TeamMember> Members { get; set; }
 
+        public ICollection<Borough> Boroughs { get; set; }
+
         public int CreatorID { get; set; }
         public virtual Person Creator { get; set; }
 
@@ -39,6 +41,7 @@ namespace TDB_SAAS.Models
         public Team()
         {
             Members = new HashSet<TeamMember>();
+            Boroughs = new HashSet<Borough>();
         }
     }
 }

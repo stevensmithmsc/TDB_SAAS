@@ -19,6 +19,15 @@ namespace TDB_SAAS.Models.EntityConfigurations
                 .WithMany(p => p.LeaderOf)
                 .HasForeignKey(t => t.LeaderID);
 
+            HasMany(t => t.Boroughs)
+                .WithMany(b => b.Teams)
+                .Map(m =>
+                {
+                    m.ToTable("TeamBoroughs");
+                    m.MapLeftKey("TeamID");
+                    m.MapRightKey("BoroughID");
+                });
+
             HasRequired(t => t.Creator)
                 .WithMany(p => p.TeamsCreated)
                 .HasForeignKey(t => t.CreatorID);

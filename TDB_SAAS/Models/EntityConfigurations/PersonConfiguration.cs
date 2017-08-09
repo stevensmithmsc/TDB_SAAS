@@ -73,6 +73,15 @@ namespace TDB_SAAS.Models.EntityConfigurations
                    m.MapRightKey("Flag");
                });
 
+            HasMany(p => p.Boroughs)
+                .WithMany(b => b.Staff)
+                .Map(m =>
+                {
+                    m.ToTable("StaffBoroughs");
+                    m.MapLeftKey("StaffID");
+                    m.MapRightKey("BoroughID");
+                });
+
         }
 
     }

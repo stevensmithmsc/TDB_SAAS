@@ -30,6 +30,7 @@ namespace TDB_SAAS.Models
         public virtual DbSet<Attendance> Attendances { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<TeamMember> TeamMembers { get; set; }
+        public virtual DbSet<Borough> Boroughs { get; set; }
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
@@ -47,6 +48,7 @@ namespace TDB_SAAS.Models
             modelBuilder.Configurations.Add(new AttendanceConfiguration());
             modelBuilder.Configurations.Add(new TeamConfiguration());
             modelBuilder.Configurations.Add(new TeamMemberConfiguration());
+            modelBuilder.Configurations.Add(new BoroughConfiguration());
         }
     }
 

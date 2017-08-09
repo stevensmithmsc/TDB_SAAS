@@ -25,6 +25,7 @@ namespace TDB_SAAS.Models
         public bool RA_ESR { get; set; }
 
         public ICollection<Requirement> RequirementsWithStatus { get; set; }
+        public ICollection<Attendance> AttendanceWithStatus { get; set; }
 
         public int CreatorID { get; set; }
         public virtual Person Creator { get; set; }
@@ -39,6 +40,7 @@ namespace TDB_SAAS.Models
         public Status()
         {
             this.RequirementsWithStatus = new HashSet<Requirement>();
+            this.AttendanceWithStatus = new HashSet<Attendance>();
         }
     }
 }

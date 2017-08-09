@@ -44,10 +44,10 @@ namespace TDB_SAAS.Models
 
         public ICollection<Requirement> RequiredBy { get; set; }
 
-        public int NumberRequired { get { return 0; } }
-        public int NumberCompleted { get { return 0; } }
-        public int PlacesAvailable { get { return 0; } }
-        public int PlacesBooked { get { return 0; } }
+        public int NumberRequired { get { return RequiredBy.Where(r => r.StatusID == 1).Count(); } }
+        public int NumberCompleted { get { return RequiredBy.Where(r => r.StatusID == 5).Count(); ; } }
+        public int PlacesAvailable { get { return Sessions.Where(s => s.Strt > DateTime.Now).Sum(s => s.AvailablePlaces); } }
+        public int PlacesBooked { get { return Sessions.Where(s => s.Strt > DateTime.Now).Sum(s => s.UnoutcommedBookings); ; } }
 
         public Course()
         {
@@ -55,6 +55,7 @@ namespace TDB_SAAS.Models
             this.ReqFor = new HashSet<Course>();
             this.Flags = new HashSet<CFlag>();
             this.Sessions = new HashSet<Session>();
+            this.RequiredBy = new HashSet<Requirement>();
         }
     }
 }

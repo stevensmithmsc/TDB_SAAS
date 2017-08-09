@@ -68,6 +68,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Location> LocationsCreated { get; set; }
         public virtual ICollection<Status> StatusesCreated { get; set; }
         public virtual ICollection<Requirement> RequirementsCreated { get; set; }
+        public virtual ICollection<Attendance> AttendancesBooked { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -84,6 +85,8 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Location> LocationsModified { get; set; }
         public virtual ICollection<Status> StatusesModified { get; set; }
         public virtual ICollection<Requirement> RequirementsModified { get; set; }
+        public virtual ICollection<Attendance> AttendancesCancelled { get; set; }
+        public virtual ICollection<Attendance> AttendancesModified { get; set; }
 
         public DateTime Modified { get; set; }
 
@@ -92,6 +95,8 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Session> SessionsTrained { get; set; }
 
         public virtual ICollection<Requirement> Requirements { get; set; }
+
+        public virtual ICollection<Attendance> Attendances { get; set; }
 
         public Person()
         {
@@ -117,6 +122,10 @@ namespace TDB_SAAS.Models
             Requirements = new HashSet<Requirement>();
             RequirementsCreated = new HashSet<Requirement>();
             RequirementsModified = new HashSet<Requirement>();
+            Attendances = new HashSet<Attendance>();
+            AttendancesBooked = new HashSet<Attendance>();
+            AttendancesCancelled = new HashSet<Attendance>();
+            AttendancesModified = new HashSet<Attendance>();
         }
 
         public string GetFullName()

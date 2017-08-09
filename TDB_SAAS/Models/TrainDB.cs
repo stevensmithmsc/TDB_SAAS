@@ -29,6 +29,7 @@ namespace TDB_SAAS.Models
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Status> Statuses { get; set; }
         public virtual DbSet<Requirement> Requirements { get; set; }
+        public virtual DbSet<Attendance> Attendances { get; set; }
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
@@ -43,6 +44,7 @@ namespace TDB_SAAS.Models
             modelBuilder.Configurations.Add(new LocationConfiguration());
             modelBuilder.Configurations.Add(new StatusConfiguration());
             modelBuilder.Configurations.Add(new RequirementConfiguration());
+            modelBuilder.Configurations.Add(new AttendanceConfiguration());
         }
     }
 

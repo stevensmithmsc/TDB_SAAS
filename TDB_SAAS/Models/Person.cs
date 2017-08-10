@@ -28,9 +28,11 @@ namespace TDB_SAAS.Models
         [Display(Name = "Job Title")]
         public string JobTitle { get; set; }
 
-        //public Nullable<int> Finance { get; set; }
+        public Nullable<int> FinanceCode { get; set; }
+        public virtual CostCentre Finance { get; set; }
 
-        //public Nullable<int> JobStatus { get; set; }
+        public Nullable<int> SubjectiveID { get; set; }
+        public virtual Subjective JobStatus { get; set; }
 
         [Display(Name = "Line Manager")]
         public Nullable<int> LineManID { get; set; }
@@ -72,6 +74,8 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Team> TeamsCreated { get; set; }
         public virtual ICollection<TeamMember> TeamMembersCreated { get; set; }
         public virtual ICollection<Borough> BoroughsCreated { get; set; }
+        public virtual ICollection<CostCentre> CostCentresCreated { get; set; }
+        public virtual ICollection<Subjective> SubjectivesCreated { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -93,6 +97,8 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Team> TeamsModified { get; set; }
         public virtual ICollection<TeamMember> TeamMembersModified { get; set; }
         public virtual ICollection<Borough> BoroughsModified { get; set; }
+        public virtual ICollection<CostCentre> CostCentresModified { get; set; }
+        public virtual ICollection<Subjective> SubjectivesModified { get; set; }
 
         public DateTime Modified { get; set; }
 

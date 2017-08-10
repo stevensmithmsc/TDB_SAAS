@@ -82,6 +82,13 @@ namespace TDB_SAAS.Models.EntityConfigurations
                     m.MapRightKey("BoroughID");
                 });
 
+            HasOptional(p => p.Finance)
+                .WithMany(c => c.Staff)
+                .HasForeignKey(p => p.FinanceCode);
+
+            HasOptional(p => p.JobStatus)
+                .WithMany(s => s.Staff)
+                .HasForeignKey(p => p.SubjectiveID);
         }
 
     }

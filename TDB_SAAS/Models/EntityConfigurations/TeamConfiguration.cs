@@ -35,6 +35,10 @@ namespace TDB_SAAS.Models.EntityConfigurations
             HasRequired(t => t.Modifier)
                 .WithMany(p => p.TeamsModified)
                 .HasForeignKey(t => t.ModifierID);
+
+            HasOptional(t => t.Finance)
+                .WithMany(c => c.Teams)
+                .HasForeignKey(t => t.FinanceCode);
         }
     }
 }

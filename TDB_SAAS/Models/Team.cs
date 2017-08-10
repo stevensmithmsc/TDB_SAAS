@@ -14,7 +14,8 @@ namespace TDB_SAAS.Models
 
         //public string ESR { get; set; }
 
-        //public Nullable<int> Code { get; set; }
+        public Nullable<int> FinanceCode { get; set; }
+        public virtual CostCentre Finance { get; set; }
 
         public Nullable<int> LeaderID { get; set; }
         public virtual Person Leader { get; set; }

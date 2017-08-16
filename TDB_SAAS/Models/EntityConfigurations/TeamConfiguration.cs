@@ -48,6 +48,10 @@ namespace TDB_SAAS.Models.EntityConfigurations
                     m.MapLeftKey("TeamID");
                     m.MapRightKey("ServiceID");
                 });
+
+            HasOptional(t => t.Cohort)
+                .WithMany(c => c.Teams)
+                .HasForeignKey(t => t.CohortID);
         }
     }
 }

@@ -40,7 +40,8 @@ namespace TDB_SAAS.Models
 
         public virtual ICollection<Person> Minions { get; set; }
 
-        //public Nullable<int> CohortID { get; set; }
+        public Nullable<int> CohortID { get; set; }
+        public virtual Cohort Cohort { get; set; }
 
         //public string UUID { get; set; }
 
@@ -77,6 +78,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<CostCentre> CostCentresCreated { get; set; }
         public virtual ICollection<Subjective> SubjectivesCreated { get; set; }
         public virtual ICollection<Service> ServicesCreated { get; set; }
+        public virtual ICollection<Cohort> CohortsCreated { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -101,6 +103,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<CostCentre> CostCentresModified { get; set; }
         public virtual ICollection<Subjective> SubjectivesModified { get; set; }
         public virtual ICollection<Service> ServicesModified { get; set; }
+        public virtual ICollection<Cohort> CohortsModified { get; set; }
 
         public DateTime Modified { get; set; }
 
@@ -165,6 +168,8 @@ namespace TDB_SAAS.Models
             Services = new HashSet<Service>();
             ServicesCreated = new HashSet<Service>();
             ServicesModified = new HashSet<Service>();
+            CohortsCreated = new HashSet<Cohort>();
+            CohortsModified = new HashSet<Cohort>();
         }
 
         public string GetFullName()

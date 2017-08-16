@@ -20,7 +20,8 @@ namespace TDB_SAAS.Models
         public Nullable<int> LeaderID { get; set; }
         public virtual Person Leader { get; set; }
 
-        //public Nullable<int> CohortID { get; set; }
+        public Nullable<int> CohortID { get; set; }
+        public virtual Cohort Cohort { get; set; }
 
         [Display(Name = "No Training Required")]
         public bool NoTrain { get; set; }

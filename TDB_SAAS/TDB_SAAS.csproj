@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201708101534201_AddCostCentreAndSubjective.Designer.cs">
       <DependentUpon>201708101534201_AddCostCentreAndSubjective.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708161446521_AddServicesToDB.cs" />
+    <Compile Include="Migrations\201708161446521_AddServicesToDB.Designer.cs">
+      <DependentUpon>201708161446521_AddServicesToDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Borough.cs" />
@@ -252,6 +256,7 @@
     <Compile Include="Models\EntityConfigurations\LocationConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\PersonConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\RequirementConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\ServiceConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\StatusConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\SubjectiveConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\TeamConfiguration.cs" />
@@ -262,6 +267,8 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Flag.cs" />
     <Compile Include="Models\Requirement.cs" />
+    <Compile Include="Models\Service.cs" />
+    <Compile Include="Models\ServiceLevel.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\EntityConfigurations\SessionConfiguration.cs" />
     <Compile Include="Models\Status.cs" />
@@ -383,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708101534201_AddCostCentreAndSubjective.resx">
       <DependentUpon>201708101534201_AddCostCentreAndSubjective.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161446521_AddServicesToDB.resx">
+      <DependentUpon>201708161446521_AddServicesToDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

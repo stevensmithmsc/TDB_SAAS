@@ -89,6 +89,15 @@ namespace TDB_SAAS.Models.EntityConfigurations
             HasOptional(p => p.JobStatus)
                 .WithMany(s => s.Staff)
                 .HasForeignKey(p => p.SubjectiveID);
+
+            HasMany(p => p.Services)
+                .WithMany(s => s.Staff)
+                .Map(m =>
+                {
+                    m.ToTable("StaffServices");
+                    m.MapLeftKey("StaffID");
+                    m.MapRightKey("ServiceID");
+                });
         }
 
     }

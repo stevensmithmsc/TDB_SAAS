@@ -76,6 +76,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Borough> BoroughsCreated { get; set; }
         public virtual ICollection<CostCentre> CostCentresCreated { get; set; }
         public virtual ICollection<Subjective> SubjectivesCreated { get; set; }
+        public virtual ICollection<Service> ServicesCreated { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -99,6 +100,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Borough> BoroughsModified { get; set; }
         public virtual ICollection<CostCentre> CostCentresModified { get; set; }
         public virtual ICollection<Subjective> SubjectivesModified { get; set; }
+        public virtual ICollection<Service> ServicesModified { get; set; }
 
         public DateTime Modified { get; set; }
 
@@ -115,6 +117,9 @@ namespace TDB_SAAS.Models
         public virtual ICollection<TeamMember> MemberOf { get; set; }
 
         public virtual ICollection<Borough> Boroughs { get; set; }
+
+        public virtual ICollection<Service> Services { get; set; }
+
 
         public Person()
         {
@@ -153,6 +158,13 @@ namespace TDB_SAAS.Models
             Boroughs = new HashSet<Borough>();
             BoroughsCreated = new HashSet<Borough>();
             BoroughsModified = new HashSet<Borough>();
+            CostCentresCreated = new HashSet<CostCentre>();
+            CostCentresModified = new HashSet<CostCentre>();
+            SubjectivesCreated = new HashSet<Subjective>();
+            SubjectivesModified = new HashSet<Subjective>();
+            Services = new HashSet<Service>();
+            ServicesCreated = new HashSet<Service>();
+            ServicesModified = new HashSet<Service>();
         }
 
         public string GetFullName()

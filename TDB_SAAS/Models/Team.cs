@@ -39,10 +39,13 @@ namespace TDB_SAAS.Models
 
         public DateTime Modified { get; set; }
 
+        public ICollection<Service> Services { get; set; }
+
         public Team()
         {
             Members = new HashSet<TeamMember>();
             Boroughs = new HashSet<Borough>();
+            Services = new HashSet<Service>();
         }
     }
 }

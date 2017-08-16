@@ -39,6 +39,15 @@ namespace TDB_SAAS.Models.EntityConfigurations
             HasOptional(t => t.Finance)
                 .WithMany(c => c.Teams)
                 .HasForeignKey(t => t.FinanceCode);
+
+            HasMany(t => t.Services)
+                .WithMany(s => s.Teams)
+                .Map(m =>
+                {
+                    m.ToTable("TeamServices");
+                    m.MapLeftKey("TeamID");
+                    m.MapRightKey("ServiceID");
+                });
         }
     }
 }

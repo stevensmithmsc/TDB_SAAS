@@ -33,6 +33,7 @@ namespace TDB_SAAS.Models
         public virtual DbSet<Borough> Boroughs { get; set; }
         public virtual DbSet<CostCentre> CostCentres { get; set; }
         public virtual DbSet<Subjective> Subjectives { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
@@ -53,6 +54,7 @@ namespace TDB_SAAS.Models
             modelBuilder.Configurations.Add(new BoroughConfiguration());
             modelBuilder.Configurations.Add(new CostCentreConfiguration());
             modelBuilder.Configurations.Add(new SubjectiveConfiguration());
+            modelBuilder.Configurations.Add(new ServiceConfiguration());
         }
     }
 

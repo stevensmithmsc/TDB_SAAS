@@ -73,6 +73,35 @@ namespace TDB_SAAS.Models.EntityConfigurations
                    m.MapRightKey("Flag");
                });
 
+            HasMany(p => p.Boroughs)
+                .WithMany(b => b.Staff)
+                .Map(m =>
+                {
+                    m.ToTable("StaffBoroughs");
+                    m.MapLeftKey("StaffID");
+                    m.MapRightKey("BoroughID");
+                });
+
+            HasOptional(p => p.Finance)
+                .WithMany(c => c.Staff)
+                .HasForeignKey(p => p.FinanceCode);
+
+            HasOptional(p => p.JobStatus)
+                .WithMany(s => s.Staff)
+                .HasForeignKey(p => p.SubjectiveID);
+
+            HasMany(p => p.Services)
+                .WithMany(s => s.Staff)
+                .Map(m =>
+                {
+                    m.ToTable("StaffServices");
+                    m.MapLeftKey("StaffID");
+                    m.MapRightKey("ServiceID");
+                });
+
+            HasOptional(p => p.Cohort)
+                .WithMany(c => c.Staff)
+                .HasForeignKey(p => p.CohortID);
         }
 
     }

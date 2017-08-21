@@ -28,9 +28,11 @@ namespace TDB_SAAS.Models
         [Display(Name = "Job Title")]
         public string JobTitle { get; set; }
 
-        //public Nullable<int> Finance { get; set; }
+        public Nullable<int> FinanceCode { get; set; }
+        public virtual CostCentre Finance { get; set; }
 
-        //public Nullable<int> JobStatus { get; set; }
+        public Nullable<int> SubjectiveID { get; set; }
+        public virtual Subjective JobStatus { get; set; }
 
         [Display(Name = "Line Manager")]
         public Nullable<int> LineManID { get; set; }
@@ -38,7 +40,8 @@ namespace TDB_SAAS.Models
 
         public virtual ICollection<Person> Minions { get; set; }
 
-        //public Nullable<int> CohortID { get; set; }
+        public Nullable<int> CohortID { get; set; }
+        public virtual Cohort Cohort { get; set; }
 
         //public string UUID { get; set; }
 
@@ -64,6 +67,18 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Flag> FlagsCreated { get; set; }
         public virtual ICollection<Course> CoursesCreated { get; set; }
         public virtual ICollection<CFlag> CFlagsCreated { get; set; }
+        public virtual ICollection<Session> SessionsCreated { get; set; }
+        public virtual ICollection<Location> LocationsCreated { get; set; }
+        public virtual ICollection<Status> StatusesCreated { get; set; }
+        public virtual ICollection<Requirement> RequirementsCreated { get; set; }
+        public virtual ICollection<Attendance> AttendancesBooked { get; set; }
+        public virtual ICollection<Team> TeamsCreated { get; set; }
+        public virtual ICollection<TeamMember> TeamMembersCreated { get; set; }
+        public virtual ICollection<Borough> BoroughsCreated { get; set; }
+        public virtual ICollection<CostCentre> CostCentresCreated { get; set; }
+        public virtual ICollection<Subjective> SubjectivesCreated { get; set; }
+        public virtual ICollection<Service> ServicesCreated { get; set; }
+        public virtual ICollection<Cohort> CohortsCreated { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -76,10 +91,38 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Flag> FlagsModified { get; set; }
         public virtual ICollection<Course> CoursesModified { get; set; }
         public virtual ICollection<CFlag> CFlagsModified { get; set; }
+        public virtual ICollection<Session> SessionsModified { get; set; }
+        public virtual ICollection<Location> LocationsModified { get; set; }
+        public virtual ICollection<Status> StatusesModified { get; set; }
+        public virtual ICollection<Requirement> RequirementsModified { get; set; }
+        public virtual ICollection<Attendance> AttendancesCancelled { get; set; }
+        public virtual ICollection<Attendance> AttendancesModified { get; set; }
+        public virtual ICollection<Team> TeamsModified { get; set; }
+        public virtual ICollection<TeamMember> TeamMembersModified { get; set; }
+        public virtual ICollection<Borough> BoroughsModified { get; set; }
+        public virtual ICollection<CostCentre> CostCentresModified { get; set; }
+        public virtual ICollection<Subjective> SubjectivesModified { get; set; }
+        public virtual ICollection<Service> ServicesModified { get; set; }
+        public virtual ICollection<Cohort> CohortsModified { get; set; }
 
         public DateTime Modified { get; set; }
 
         public virtual ICollection<Flag> Flags { get; set; }
+
+        public virtual ICollection<Session> SessionsTrained { get; set; }
+
+        public virtual ICollection<Requirement> Requirements { get; set; }
+
+        public virtual ICollection<Attendance> Attendances { get; set; }
+
+        public virtual ICollection<Team> LeaderOf { get; set; }
+
+        public virtual ICollection<TeamMember> MemberOf { get; set; }
+
+        public virtual ICollection<Borough> Boroughs { get; set; }
+
+        public virtual ICollection<Service> Services { get; set; }
+
 
         public Person()
         {
@@ -95,6 +138,38 @@ namespace TDB_SAAS.Models
             CoursesModified = new HashSet<Course>();
             CFlagsCreated = new HashSet<CFlag>();
             CFlagsModified = new HashSet<CFlag>();
+            SessionsCreated = new HashSet<Session>();
+            SessionsModified = new HashSet<Session>();
+            SessionsTrained = new HashSet<Session>();
+            LocationsCreated = new HashSet<Location>();
+            LocationsModified = new HashSet<Location>();
+            StatusesCreated = new HashSet<Status>();
+            StatusesModified = new HashSet<Status>();
+            Requirements = new HashSet<Requirement>();
+            RequirementsCreated = new HashSet<Requirement>();
+            RequirementsModified = new HashSet<Requirement>();
+            Attendances = new HashSet<Attendance>();
+            AttendancesBooked = new HashSet<Attendance>();
+            AttendancesCancelled = new HashSet<Attendance>();
+            AttendancesModified = new HashSet<Attendance>();
+            TeamsCreated = new HashSet<Team>();
+            TeamsModified = new HashSet<Team>();
+            LeaderOf = new HashSet<Team>();
+            MemberOf = new HashSet<TeamMember>();
+            TeamMembersCreated = new HashSet<TeamMember>();
+            TeamMembersModified = new HashSet<TeamMember>();
+            Boroughs = new HashSet<Borough>();
+            BoroughsCreated = new HashSet<Borough>();
+            BoroughsModified = new HashSet<Borough>();
+            CostCentresCreated = new HashSet<CostCentre>();
+            CostCentresModified = new HashSet<CostCentre>();
+            SubjectivesCreated = new HashSet<Subjective>();
+            SubjectivesModified = new HashSet<Subjective>();
+            Services = new HashSet<Service>();
+            ServicesCreated = new HashSet<Service>();
+            ServicesModified = new HashSet<Service>();
+            CohortsCreated = new HashSet<Cohort>();
+            CohortsModified = new HashSet<Cohort>();
         }
 
         public string GetFullName()

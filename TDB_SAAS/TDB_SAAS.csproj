@@ -170,7 +170,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,24 +205,91 @@
     <Compile Include="Migrations\201707261244235_FixCourseFlags.Designer.cs">
       <DependentUpon>201707261244235_FixCourseFlags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708020935157_AddSessionsToDB.cs" />
+    <Compile Include="Migrations\201708020935157_AddSessionsToDB.Designer.cs">
+      <DependentUpon>201708020935157_AddSessionsToDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708041415572_StatusAndRequirementTables.cs" />
+    <Compile Include="Migrations\201708041415572_StatusAndRequirementTables.Designer.cs">
+      <DependentUpon>201708041415572_StatusAndRequirementTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708041431342_PopulateStatuses.cs" />
+    <Compile Include="Migrations\201708041431342_PopulateStatuses.Designer.cs">
+      <DependentUpon>201708041431342_PopulateStatuses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091204137_AddAttendancesToDB.cs" />
+    <Compile Include="Migrations\201708091204137_AddAttendancesToDB.Designer.cs">
+      <DependentUpon>201708091204137_AddAttendancesToDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091423360_AddTeamsToDB.cs" />
+    <Compile Include="Migrations\201708091423360_AddTeamsToDB.Designer.cs">
+      <DependentUpon>201708091423360_AddTeamsToDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091511476_AddBoroughsToDB.cs" />
+    <Compile Include="Migrations\201708091511476_AddBoroughsToDB.Designer.cs">
+      <DependentUpon>201708091511476_AddBoroughsToDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091518511_PopulateBoroughsTable.cs" />
+    <Compile Include="Migrations\201708091518511_PopulateBoroughsTable.Designer.cs">
+      <DependentUpon>201708091518511_PopulateBoroughsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708101534201_AddCostCentreAndSubjective.cs" />
+    <Compile Include="Migrations\201708101534201_AddCostCentreAndSubjective.Designer.cs">
+      <DependentUpon>201708101534201_AddCostCentreAndSubjective.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708161446521_AddServicesToDB.cs" />
+    <Compile Include="Migrations\201708161446521_AddServicesToDB.Designer.cs">
+      <DependentUpon>201708161446521_AddServicesToDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708161527302_AddCohortsToDB.cs" />
+    <Compile Include="Migrations\201708161527302_AddCohortsToDB.Designer.cs">
+      <DependentUpon>201708161527302_AddCohortsToDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Borough.cs" />
     <Compile Include="Models\CFlag.cs" />
+    <Compile Include="Models\Cohort.cs" />
+    <Compile Include="Models\CostCentre.cs" />
+    <Compile Include="Models\EntityConfigurations\AttendanceConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\BoroughConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\CFlagConfiguration.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\EntityConfigurations\CohortConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\CostCentreConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\CourseConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\FlagConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\LocationConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\PersonConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\RequirementConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\ServiceConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\StatusConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\SubjectiveConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\TeamConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\TeamMemberConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\TitleConfiguration.cs" />
     <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Flag.cs" />
+    <Compile Include="Models\Requirement.cs" />
+    <Compile Include="Models\Service.cs" />
+    <Compile Include="Models\ServiceLevel.cs" />
+    <Compile Include="Models\Session.cs" />
+    <Compile Include="Models\EntityConfigurations\SessionConfiguration.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Subjective.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Models\Title.cs" />
     <Compile Include="Models\TrainDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CourseFormViewModel.cs" />
     <Compile Include="ViewModels\DefaultGenderInAllowedGenders.cs" />
     <Compile Include="ViewModels\PersonFormViewModel.cs" />
+    <Compile Include="ViewModels\SessionFormViewModel.cs" />
     <Compile Include="ViewModels\TitleFormViewModel.cs" />
+    <Compile Include="ViewModels\Trainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -266,6 +335,10 @@
     <Content Include="Views\Title\TitleForm.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\CourseForm.cshtml" />
+    <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Location\Index.cshtml" />
+    <Content Include="Views\Location\LocationForm.cshtml" />
+    <Content Include="Views\Session\SessionForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -299,6 +372,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707261244235_FixCourseFlags.resx">
       <DependentUpon>201707261244235_FixCourseFlags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708020935157_AddSessionsToDB.resx">
+      <DependentUpon>201708020935157_AddSessionsToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708041415572_StatusAndRequirementTables.resx">
+      <DependentUpon>201708041415572_StatusAndRequirementTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708041431342_PopulateStatuses.resx">
+      <DependentUpon>201708041431342_PopulateStatuses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091204137_AddAttendancesToDB.resx">
+      <DependentUpon>201708091204137_AddAttendancesToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091423360_AddTeamsToDB.resx">
+      <DependentUpon>201708091423360_AddTeamsToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091511476_AddBoroughsToDB.resx">
+      <DependentUpon>201708091511476_AddBoroughsToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091518511_PopulateBoroughsTable.resx">
+      <DependentUpon>201708091518511_PopulateBoroughsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101534201_AddCostCentreAndSubjective.resx">
+      <DependentUpon>201708101534201_AddCostCentreAndSubjective.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161446521_AddServicesToDB.resx">
+      <DependentUpon>201708161446521_AddServicesToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161527302_AddCohortsToDB.resx">
+      <DependentUpon>201708161527302_AddCohortsToDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

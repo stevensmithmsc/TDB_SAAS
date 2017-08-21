@@ -1,8 +1,6 @@
 namespace TDB_SAAS.Models
 {
-    using System;
     using System.Data.Entity;
-    using System.Linq;
     using TDB_SAAS.Models.EntityConfigurations;
 
     public class TrainDB : DbContext
@@ -25,6 +23,19 @@ namespace TDB_SAAS.Models
         public virtual DbSet<Flag> Flags { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<CFlag> CFlags { get; set; }
+        public virtual DbSet<Session> Sessions { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Status> Statuses { get; set; }
+        public virtual DbSet<Requirement> Requirements { get; set; }
+        public virtual DbSet<Attendance> Attendances { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<TeamMember> TeamMembers { get; set; }
+        public virtual DbSet<Borough> Boroughs { get; set; }
+        public virtual DbSet<CostCentre> CostCentres { get; set; }
+        public virtual DbSet<Subjective> Subjectives { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<Cohort> Cohorts { get; set; }
+
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -34,6 +45,18 @@ namespace TDB_SAAS.Models
             modelBuilder.Configurations.Add(new FlagConfiguration());
             modelBuilder.Configurations.Add(new CourseConfiguration());
             modelBuilder.Configurations.Add(new CFlagConfiguration());
+            modelBuilder.Configurations.Add(new SessionConfiguration());
+            modelBuilder.Configurations.Add(new LocationConfiguration());
+            modelBuilder.Configurations.Add(new StatusConfiguration());
+            modelBuilder.Configurations.Add(new RequirementConfiguration());
+            modelBuilder.Configurations.Add(new AttendanceConfiguration());
+            modelBuilder.Configurations.Add(new TeamConfiguration());
+            modelBuilder.Configurations.Add(new TeamMemberConfiguration());
+            modelBuilder.Configurations.Add(new BoroughConfiguration());
+            modelBuilder.Configurations.Add(new CostCentreConfiguration());
+            modelBuilder.Configurations.Add(new SubjectiveConfiguration());
+            modelBuilder.Configurations.Add(new ServiceConfiguration());
+            modelBuilder.Configurations.Add(new CohortConfiguration());
         }
     }
 

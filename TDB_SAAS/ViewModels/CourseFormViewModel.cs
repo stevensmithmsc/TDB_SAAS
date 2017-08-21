@@ -46,7 +46,7 @@ namespace TDB_SAAS.ViewModels
                 Flags[i] = fs;
                 i++;
             }
-            IEnumerable<Course> RequireableCourses = AllCourses.Where(c => c.ID != course.ID);
+            IEnumerable<Course> RequireableCourses = AllCourses.Where(c => c.ID != course.ID).Except(course.ReqFor);
             this.PreReqs = new CourseSelector[RequireableCourses.Count()];
             i = 0;
             foreach (Course c in RequireableCourses)

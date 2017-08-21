@@ -72,9 +72,12 @@ namespace TDB_SAAS.Controllers
                     course.Flags.Add(_context.CFlags.Single(f => f.ID == fs.Flag.ID));
                 }
 
-                foreach (var cs in viewModel.PreReqs.Where(c => c.Selected))
+                if (viewModel.PreReqs != null && viewModel.PreReqs.Length > 0)
                 {
-                    course.PreReqs.Add(_context.Courses.Single(c => c.ID == cs.PreReq.ID));
+                    foreach (var cs in viewModel.PreReqs.Where(c => c.Selected))
+                    {
+                        course.PreReqs.Add(_context.Courses.Single(c => c.ID == cs.PreReq.ID));
+                    }
                 }
 
                 course.Created = DateTime.Now;
@@ -132,6 +135,14 @@ namespace TDB_SAAS.Controllers
             var courses = _context.Courses.Include(c => c.Flags).ToList();
 
             return View(courses);
+        }
+
+        
+        public ActionResult QuickSearch(String searchString)
+        {
+            var courses = _context.Courses.Where(c => c.CourseName.Contains(searchString)).Include(c => c.Flags).ToList();
+
+            return View("Index", courses);
         }
 
 

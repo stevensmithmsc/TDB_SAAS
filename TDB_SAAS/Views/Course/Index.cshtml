@@ -6,7 +6,15 @@
 
 <h2>Courses</h2>
 
-@Html.ActionLink("New Course", "New", "Course", new { @class = "btn btn-default" })
+@using (Html.BeginForm("QuickSearch", "Course", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-inline">
+        <label for="searchString">Quick Search</label>
+        <input type="text" class="form-control" id="searchString" name="searchString" placeholder="Course Name" />
+        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Go</button>
+    </div>
+    
+}
 
 <table class="table table-striped">
 
@@ -39,4 +47,6 @@
     }
 
 </table>
+
+@Html.ActionLink("New Course", "New", "Course", new { @class = "btn btn-primary" })
 

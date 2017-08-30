@@ -170,11 +170,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BoroughsController.cs" />
     <Compile Include="Controllers\CohortsController.cs" />
+    <Compile Include="Controllers\CostCentresController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="Controllers\SubjectivesController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Global.asax.cs">
@@ -357,6 +360,21 @@
     <Content Include="Views\Boroughs\Details.cshtml" />
     <Content Include="Views\Boroughs\Edit.cshtml" />
     <Content Include="Views\Boroughs\Index.cshtml" />
+    <Content Include="Views\Services\Create.cshtml" />
+    <Content Include="Views\Services\Delete.cshtml" />
+    <Content Include="Views\Services\Details.cshtml" />
+    <Content Include="Views\Services\Edit.cshtml" />
+    <Content Include="Views\Services\Index.cshtml" />
+    <Content Include="Views\CostCentres\Create.cshtml" />
+    <Content Include="Views\CostCentres\Delete.cshtml" />
+    <Content Include="Views\CostCentres\Details.cshtml" />
+    <Content Include="Views\CostCentres\Edit.cshtml" />
+    <Content Include="Views\CostCentres\Index.cshtml" />
+    <Content Include="Views\Subjectives\Create.cshtml" />
+    <Content Include="Views\Subjectives\Delete.cshtml" />
+    <Content Include="Views\Subjectives\Details.cshtml" />
+    <Content Include="Views\Subjectives\Edit.cshtml" />
+    <Content Include="Views\Subjectives\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

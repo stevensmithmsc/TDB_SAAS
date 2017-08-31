@@ -17,10 +17,10 @@ else
 {
     @Html.ValidationSummary(true, "Please correct the highlighted fields");
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6">
             <div class="form-group">
                 @Html.LabelFor(m => m.TitleID)
-                @Html.DropDownListFor(m => m.TitleID, new SelectList(Model.Titles, "ID", "TitleValue"), "Select Title", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.TitleID, null, "Select Title", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.TitleID)
             </div>
             <div class="form-group">
@@ -45,15 +45,30 @@ else
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Gender)
-                @Html.EnumDropDownListFor(m => m.Gender, new { @class = "form-control" })
+                @Html.EnumDropDownListFor(m => m.Gender, "Select Gender", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Gender)
             </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CohortID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.CohortID, null, "Select Cohort", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CohortID, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6">
             <div class="form-group">
                 @Html.LabelFor(m => m.JobTitle)
                 @Html.TextBoxFor(m => m.JobTitle, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.JobTitle)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FinanceCode, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.FinanceCode, null, "Select Finance Cost Code", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FinanceCode, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubjectiveID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.SubjectiveID, null, "Select Subjective Code", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FinanceCode, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Phone)
@@ -70,6 +85,8 @@ else
                 @Html.TextAreaFor(m => m.Comments, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Comments)
             </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
             <div class="form-group">
                 @for (int i = 0; i < Model.Flags.Count(); i++)
                 {

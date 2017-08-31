@@ -25,11 +25,12 @@ namespace TDB_SAAS.Controllers
 
         public ActionResult New()
         {
-            var titles = _context.Titles.ToList();
             var flags = _context.Flags.ToList();
-            var viewModel = new PersonFormViewModel(new Person(), titles, flags);
-            ;
-            
+            var viewModel = new PersonFormViewModel(new Person(), flags);
+            ViewBag.TitleID = new SelectList(_context.Titles, "ID", "TitleValue");
+            ViewBag.FinanceCode = new SelectList(_context.CostCentres, "Code", "CCName");
+            ViewBag.SubjectiveID = new SelectList(_context.Subjectives, "Code", "Subname");
+            ViewBag.CohortID = new SelectList(_context.Cohorts, "ID", "CohortDescription");
 
             return View("PersonForm", viewModel);
         }
@@ -40,7 +41,10 @@ namespace TDB_SAAS.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Titles = _context.Titles.ToList();
+                ViewBag.TitleID = new SelectList(_context.Titles, "ID", "TitleValue");
+                ViewBag.FinanceCode = new SelectList(_context.CostCentres, "Code", "CCName");
+                ViewBag.SubjectiveID = new SelectList(_context.Subjectives, "Code", "Subname");
+                ViewBag.CohortID = new SelectList(_context.Cohorts, "ID", "CohortDescription");
                 return View("PersonForm", viewModel);
             }
 
@@ -57,9 +61,12 @@ namespace TDB_SAAS.Controllers
                 person.PreferredName = viewModel.PreferredName;
                 person.Gender = viewModel.Gender;
                 person.JobTitle = viewModel.JobTitle;
+                person.FinanceCode = viewModel.FinanceCode;
+                person.SubjectiveID = viewModel.SubjectiveID;
                 person.Phone = viewModel.Phone;
                 person.Email = viewModel.Email;
                 person.Comments = viewModel.Comments;
+                person.CohortID = viewModel.CohortID;
                 foreach(var fs in viewModel.Flags.Where(f => f.Selected))
                 {
                     person.Flags.Add(_context.Flags.Single(f => f.ID == fs.Flag.ID));
@@ -87,9 +94,12 @@ namespace TDB_SAAS.Controllers
                 personInDb.PreferredName = viewModel.PreferredName;
                 personInDb.Gender = viewModel.Gender;
                 personInDb.JobTitle = viewModel.JobTitle;
+                personInDb.FinanceCode = viewModel.FinanceCode;
+                personInDb.SubjectiveID = viewModel.SubjectiveID;
                 personInDb.Phone = viewModel.Phone;
                 personInDb.Email = viewModel.Email;
                 personInDb.Comments = viewModel.Comments;
+                personInDb.CohortID = viewModel.CohortID;
 
                 foreach (var fs in viewModel.Flags)
                 {
@@ -119,15 +129,18 @@ namespace TDB_SAAS.Controllers
             var person = _context.People.SingleOrDefault(p => p.ID == id);
             if (person == null) return HttpNotFound();
 
-            var viewModel = new PersonFormViewModel(person, _context.Titles.ToList(), _context.Flags.ToList());
-
+            var viewModel = new PersonFormViewModel(person, _context.Flags.ToList());
+            ViewBag.TitleID = new SelectList(_context.Titles, "ID", "TitleValue");
+            ViewBag.FinanceCode = new SelectList(_context.CostCentres, "Code", "CCName");
+            ViewBag.SubjectiveID = new SelectList(_context.Subjectives, "Code", "Subname");
+            ViewBag.CohortID = new SelectList(_context.Cohorts, "ID", "CohortDescription");
             return View("PersonForm", viewModel);
         }
 
         // GET: Person
         public ActionResult Index()
         {
-            var people = _context.People.Where(p => p.ID > 0).Include(p => p.Title).ToList();
+            var people = _context.People.Where(p => p.ID > 0).Include(p => p.Title).Include(p => p.Cohort);
 
             return View(people);
         }

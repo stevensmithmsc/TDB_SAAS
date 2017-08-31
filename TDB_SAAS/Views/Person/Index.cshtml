@@ -1,4 +1,4 @@
-﻿@model List<TDB_SAAS.Models.Person>
+﻿@model IEnumerable<TDB_SAAS.Models.Person>
 @{
     ViewBag.Title = "People";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,7 +16,9 @@
     <tr>
     <td>@Html.ActionLink(person.GetFullName(), "Edit", "Person", new { id = person.ID }, null) </td>
     <td>@person.Gender</td>
-    <td>@person.JobTitle</td></tr>
+    <td>@person.JobTitle</td>
+    <td>@if (person.Cohort != null)
+    { @person.Cohort.Code }</td></tr>
 }
     
 </table>

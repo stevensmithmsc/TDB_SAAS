@@ -9,8 +9,6 @@ namespace TDB_SAAS.ViewModels
 {
     public class PersonFormViewModel
     {
-        public IEnumerable<Title> Titles { get; set; }
-
         public int ID { get; set; }
 
         [Display(Name = "Title")]
@@ -32,6 +30,12 @@ namespace TDB_SAAS.ViewModels
         [MaxLength(100)]
         [Display(Name = "Job Title")]
         public string JobTitle { get; set; }
+
+        [Display(Name = "Finance")]
+        public Nullable<int> FinanceCode { get; set; }
+
+        [Display(Name = "Job Status")]
+        public Nullable<int> SubjectiveID { get; set; }
 
         [Display(Name = "Line Manager")]
         public Nullable<int> LineManID { get; set; }
@@ -56,6 +60,9 @@ namespace TDB_SAAS.ViewModels
 
         public string DisplayName { get; set; }
 
+        [Display(Name = "Cohort")]
+        public Nullable<int> CohortID { get; set; }
+
 
 
         public PersonFormViewModel()
@@ -63,9 +70,8 @@ namespace TDB_SAAS.ViewModels
 
         }
 
-        public PersonFormViewModel(Person person, IEnumerable<Title> Titles, IEnumerable<Flag> AllFlags)
+        public PersonFormViewModel(Person person, IEnumerable<Flag> AllFlags)
         {
-            this.Titles = Titles;
             this.ID = person.ID;
             this.TitleID = person.TitleID;
             this.Forename = person.Forename;
@@ -74,12 +80,15 @@ namespace TDB_SAAS.ViewModels
             this.DisplayName = person.GetFullName();
             this.Gender = person.Gender;
             this.JobTitle = person.JobTitle;
+            this.FinanceCode = person.FinanceCode;
+            this.SubjectiveID = person.SubjectiveID;
             this.LineManID = person.LineManID;
             this.Phone = person.Phone;
             this.Email = person.Email;
             this.ESRID = person.ESRID;
             this.MiddleName = person.MiddleName;
             this.Comments = person.Comments;
+            this.CohortID = person.CohortID;
             this.Flags = new FlagSelector[AllFlags.Count()];
             int i = 0;
             foreach (Flag f in AllFlags)

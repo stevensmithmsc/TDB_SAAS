@@ -176,5 +176,11 @@ namespace TDB_SAAS.Models
         {
             return (PreferredName == null||PreferredName == "") ? ((Title != null) ? Title.TitleValue + " " : "") + (Forename != null?Forename + " ":"") + Surname : PreferredName;
         }
+
+        public Team GetMainTeam()
+        {
+            var mainTeam = MemberOf.Where(m => m.Active && m.Main).Select(m => m.Team).SingleOrDefault();
+            return mainTeam == null ? null : mainTeam;
+        }
     }
 }

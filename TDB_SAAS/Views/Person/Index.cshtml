@@ -17,6 +17,8 @@
     <td>@Html.ActionLink(person.GetFullName(), "Edit", "Person", new { id = person.ID }, null) </td>
     <td>@person.Gender</td>
     <td>@person.JobTitle</td>
+    <td>@if (person.GetMainTeam() != null)
+    { @person.GetMainTeam().TeamName }</td>
     <td>@if (person.Cohort != null)
     { @person.Cohort.Code }</td></tr>
 }

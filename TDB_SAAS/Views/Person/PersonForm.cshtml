@@ -100,6 +100,20 @@ else
                 @Html.ValidationMessageFor(m => m.Flags)
             </div>
         </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                @for (int i = 0; i < Model.Boroughs.Count(); i++)
+                {
+                    <div class="checkbox">
+                        @Html.HiddenFor(m => m.Boroughs[i].boro.ID)
+                        @Html.CheckBoxFor(m => m.Boroughs[i].Selected)
+                        @Html.LabelFor(m => m.Boroughs[i].Selected, Model.Boroughs[i].boro.BoroughName)
+                        @Html.HiddenFor(m => m.Boroughs[i].boro.BoroughName)
+                    </div>
+                }
+                @Html.ValidationMessageFor(m => m.Flags)
+            </div>
+        </div>
     </div>
     @Html.HiddenFor(m => m.ID)
     @Html.AntiForgeryToken()

@@ -25,8 +25,7 @@ namespace TDB_SAAS.Controllers
 
         public ActionResult New()
         {
-            var flags = _context.Flags.ToList();
-            var viewModel = new PersonFormViewModel(new Person(), flags);
+            var viewModel = new PersonFormViewModel(new Person(), _context.Flags, _context.Boroughs);
             ViewBag.TitleID = new SelectList(_context.Titles, "ID", "TitleValue");
             ViewBag.FinanceCode = new SelectList(_context.CostCentres, "Code", "CCName");
             ViewBag.SubjectiveID = new SelectList(_context.Subjectives, "Code", "Subname");
@@ -71,6 +70,10 @@ namespace TDB_SAAS.Controllers
                 {
                     person.Flags.Add(_context.Flags.Single(f => f.ID == fs.Flag.ID));
                 }
+                foreach(var bs in viewModel.Boroughs.Where(b => b.Selected))
+                {
+                    person.Boroughs.Add(_context.Boroughs.Single(b => b.ID == bs.boro.ID));
+                }
 
                 if (person.TitleID != 0 && person.Gender == null)
                 {
@@ -111,8 +114,18 @@ namespace TDB_SAAS.Controllers
                     {
                         if (personInDb.Flags.Contains(flg)) personInDb.Flags.Remove(flg);
                     }
+                }
 
-                    
+                foreach (var bs in viewModel.Boroughs)
+                {
+                    Borough bo = _context.Boroughs.Single(b => b.ID == bs.boro.ID);
+                    if (bs.Selected)
+                    {
+                        if (!personInDb.Boroughs.Contains(bo)) personInDb.Boroughs.Add(bo);
+                    } else
+                    {
+                        if (personInDb.Boroughs.Contains(bo)) personInDb.Boroughs.Remove(bo);
+                    }
                 }
 
                 personInDb.Modified = DateTime.Now;
@@ -129,7 +142,7 @@ namespace TDB_SAAS.Controllers
             var person = _context.People.SingleOrDefault(p => p.ID == id);
             if (person == null) return HttpNotFound();
 
-            var viewModel = new PersonFormViewModel(person, _context.Flags.ToList());
+            var viewModel = new PersonFormViewModel(person, _context.Flags, _context.Boroughs);
             ViewBag.TitleID = new SelectList(_context.Titles, "ID", "TitleValue");
             ViewBag.FinanceCode = new SelectList(_context.CostCentres, "Code", "CCName");
             ViewBag.SubjectiveID = new SelectList(_context.Subjectives, "Code", "Subname");

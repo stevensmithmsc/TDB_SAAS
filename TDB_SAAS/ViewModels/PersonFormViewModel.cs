@@ -63,6 +63,7 @@ namespace TDB_SAAS.ViewModels
         [Display(Name = "Cohort")]
         public Nullable<int> CohortID { get; set; }
 
+        public BoroughSelector[] Boroughs { get; set; }
 
 
         public PersonFormViewModel()
@@ -70,7 +71,7 @@ namespace TDB_SAAS.ViewModels
 
         }
 
-        public PersonFormViewModel(Person person, IEnumerable<Flag> AllFlags)
+        public PersonFormViewModel(Person person, IEnumerable<Flag> AllFlags, IEnumerable<Borough> AllBoros)
         {
             this.ID = person.ID;
             this.TitleID = person.TitleID;
@@ -98,6 +99,15 @@ namespace TDB_SAAS.ViewModels
                 Flags[i] = fs;
                 i++;
             }
+            this.Boroughs = new BoroughSelector[AllBoros.Count()];
+            i = 0;
+            foreach (Borough b in AllBoros)
+            {
+                BoroughSelector bs = new BoroughSelector(b);
+                bs.Selected = person.Boroughs.Contains(b);
+                Boroughs[i] = bs;
+                i++;
+            }
 
         }
 
@@ -113,6 +123,22 @@ namespace TDB_SAAS.ViewModels
             }
 
             public FlagSelector()
+            {
+            }
+        }
+
+        public class BoroughSelector
+        {
+            public Borough boro { get; set; }
+            public bool Selected { get; set; }
+
+            public BoroughSelector(Borough b)
+            {
+                this.boro = b;
+                this.Selected = false;
+            }
+
+            public BoroughSelector()
             {
             }
         }

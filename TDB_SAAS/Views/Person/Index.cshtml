@@ -20,7 +20,8 @@
     <td>@if (person.GetMainTeam() != null)
     { @person.GetMainTeam().TeamName }</td>
     <td>@if (person.Cohort != null)
-    { @person.Cohort.Code }</td></tr>
+    { @person.Cohort.Code }</td>
+        <td>@Html.ActionLink("Requirements", "Requirements", "Person", new { id = person.ID }, null) </td></tr>
 }
     
 </table>

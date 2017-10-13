@@ -1,0 +1,24 @@
+﻿@model TDB_SAAS.ViewModels.PersonRequirementsVM
+@{
+    ViewBag.Title = "Requirements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Requirements</h2>
+
+<p>@Model.Person.GetFullName() </p>
+
+<table class="table table-striped">
+
+
+    @foreach (var requirement in Model.Reqs)
+    {
+        <tr>
+            <td>@requirement.ID </td>
+            <td>@requirement.Course.CourseName</td>
+            <td>@requirement.Status.StatusDesc</td>
+            <td>@requirement.Comments</td>
+        </tr>
+    }
+
+</table>

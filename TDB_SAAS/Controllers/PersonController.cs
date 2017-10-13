@@ -150,6 +150,16 @@ namespace TDB_SAAS.Controllers
             return View("PersonForm", viewModel);
         }
 
+        // GET: Person/Requirements/5
+        public ActionResult Requirements(int id)
+        {
+
+            var viewModel = new PersonRequirementsVM();
+            viewModel.Person = _context.People.SingleOrDefault(p => p.ID == id);
+            viewModel.Reqs = _context.People.SingleOrDefault(p => p.ID == id).Requirements.ToArray();
+            return View(viewModel);
+        }
+
         // GET: Person
         public ActionResult Index()
         {

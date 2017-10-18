@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TDB_SAAS.Models;
+using TDB_SAAS.DTOs;
 
 namespace TDB_SAAS.Controllers
 {
@@ -73,17 +74,29 @@ namespace TDB_SAAS.Controllers
 
         // POST: api/Requirements
         [ResponseType(typeof(Requirement))]
-        public async Task<IHttpActionResult> PostRequirement(Requirement requirement)
+        public async Task<IHttpActionResult> PostRequirement(NewReqDTO newReq)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            Requirement requirement = new Requirement();
+            requirement.StaffID = newReq.StaffID;
+            requirement.CourseID = newReq.CourseID;
+            requirement.StatusID = 1;
+            requirement.Comments = newReq.Comments;
+
+            Person userperson = db.People.SingleOrDefault(p => p.ID == 0);
+            requirement.Created = DateTime.Now;
+            requirement.Creator = userperson;
+            requirement.Modified = DateTime.Now;
+            requirement.Modifier = userperson;
+
             db.Requirements.Add(requirement);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = requirement.ID }, requirement);
+            return CreatedAtRoute("DefaultApi", new { id = requirement.ID }, newReq);
         }
 
         // DELETE: api/Requirements/5

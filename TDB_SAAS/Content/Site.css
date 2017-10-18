@@ -71,3 +71,7 @@ A:hover { text-decoration: underline }
 .navbar-custom .icon-bar {
     background-color: #b91e7d;
 }
+
+.model-header {
+    background-color: #283c96;
+}

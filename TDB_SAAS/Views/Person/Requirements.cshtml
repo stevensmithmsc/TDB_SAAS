@@ -2,23 +2,113 @@
 @{
     ViewBag.Title = "Requirements";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    //var StatusList = new SelectList(ViewBag.Statuses, "ID", "StatusDesc");
 }
 
 <h2>Requirements</h2>
 
 <p>@Model.Person.GetFullName() </p>
 
-<table class="table table-striped">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Add New Requirement
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New Requirement</h4>
+            </div>
+            <form id="newreq">
+                <div class="modal-body">
+                    <input name="StaffID" id="StaffID" type="hidden" value="@Model.Person.ID" data-val-required="The StaffID field is required." data-val-number="The field StaffID must be a number." data-val="true">
+                    <div class="form-group">
+                        <label for="CourseID">Course Required</label>
+                        @Html.DropDownList("CourseID", new SelectList(ViewBag.Courses, "ID", "CourseName"), "Please Select Course", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Comments">Comments</label>
+                        <input type="text" class="form-control" id="Comments" name="Comments" placeholder="Enter Comments">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Requirement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("UpdateReqs", "Person"))
+{
+    @Html.ValidationSummary(true, "Please correct the highlighted fields");
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>@Html.LabelFor(m => m.Reqs[0].Course)</td>
+                <td>@Html.LabelFor(model => model.Reqs[0].StatusID, htmlAttributes: new { @class = "control-label" })</td>
+                <td>@Html.LabelFor(m => m.Reqs[0].Comments)</td>
+            </tr>
+        </thead>
+        @for (int i = 0; i < Model.Reqs.Count(); i++)
+        {
+            <tr>             
+                <td>
+                    @Html.HiddenFor(m => m.Reqs[i].ID)
+                    @Html.HiddenFor(m => m.Reqs[i].StaffID)
+                    @Model.Reqs[i].Course.CourseName
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.DropDownListFor(m => m.Reqs[i].StatusID, new SelectList(ViewBag.Statuses, "ID", "StatusDesc", Model.Reqs[i].StatusID), htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Reqs[i].StatusID, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Reqs[i].Comments, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Reqs[i].Comments)
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+    
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $( '#newreq' ).submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Requirements",
+                    data: $("#newreq").serialize(),
+                    success: function (data) {
+                        $('#myModal').modal('hide');
+                        console.log(data);
+                        location.reload(true);
+                    },
+                    error: function (data) {
+                        alert("There was a problem");
+                        console.log(data);
+                    }
+                });
+            });
+        });
 
 
-    @foreach (var requirement in Model.Reqs)
-    {
-        <tr>
-            <td>@requirement.ID </td>
-            <td>@requirement.Course.CourseName</td>
-            <td>@requirement.Status.StatusDesc</td>
-            <td>@requirement.Comments</td>
-        </tr>
-    }
+    </script>
+}
 
-</table>
+        
+
+    

@@ -157,7 +157,54 @@ namespace TDB_SAAS.Controllers
             var viewModel = new PersonRequirementsVM();
             viewModel.Person = _context.People.SingleOrDefault(p => p.ID == id);
             viewModel.Reqs = _context.People.SingleOrDefault(p => p.ID == id).Requirements.ToArray();
+            ViewBag.Statuses = _context.Statuses.Where(s => s.Requirement);
+            ViewBag.Courses = _context.Courses;
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateReqs(Requirement[] reqs)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new PersonRequirementsVM();
+                viewModel.Person = _context.People.SingleOrDefault(p => p.ID == reqs[0].StaffID);
+                viewModel.Reqs = reqs;
+                ViewBag.Statuses = _context.Statuses.Where(s => s.Requirement);
+                ViewBag.Courses = _context.Courses;
+                return View("Requirements", viewModel);
+            }
+
+            for (int i = 0; i < reqs.Count(); i++)
+            {
+                int reqID = reqs[i].ID;
+                var reqInDB = _context.Requirements.SingleOrDefault(r => r.ID == reqID);
+                bool changed = false;
+                Person userperson = _context.People.SingleOrDefault(p => p.ID == 0);
+
+                if (reqInDB.StatusID != reqs[i].StatusID)
+                {
+                    reqInDB.StatusID = reqs[i].StatusID;
+                    changed = true;
+                }
+
+                if (reqInDB.Comments != reqs[i].Comments)
+                {
+                    reqInDB.Comments = reqs[i].Comments;
+                    changed = true;
+                }
+
+                if (changed)
+                {
+                    reqInDB.Modifier = userperson;
+                    reqInDB.Modified = DateTime.Now;
+                }
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Person");
         }
 
         // GET: Person

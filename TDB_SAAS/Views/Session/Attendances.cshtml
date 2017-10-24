@@ -64,6 +64,8 @@ Location: @ViewBag.Session.Location.LocationName</p>
         @Html.DropDownList("StaffID", new SelectList(ViewBag.StaffList, "ID", "Surname"), "Please Select Staff Member", htmlAttributes: new { @class = "form-control" })
         <label for="BkComments">Comments: </label>
         <input type="text" class="form-control" id="BkComments" name="BkComments" placeholder="Enter Comments">
+        <input name="SessID" id="SessID" type="hidden" value="@ViewBag.Session.ID">
+        <input name="OutcomeID" id="OutcomeID" type="hidden" value="0">
         <input type="submit" value="Book on Course Session" class="btn btn-primary" />
     </div>
 </form>
@@ -73,3 +75,31 @@ Location: @ViewBag.Session.Location.LocationName</p>
 <p>
     @Html.ActionLink("Back to Session List", "Index")
 </p>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $( '#BookPerson' ).submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Attendances",
+                    data: $("#BookPerson").serialize(),
+                    success: function (data) {
+                        console.log(data);
+                        location.reload(true);
+                    },
+                    error: function (data) {
+                        alert("There was a problem");
+                        console.log(data);
+                    }
+                });
+            });
+        });
+
+
+    </script>
+}
+
+

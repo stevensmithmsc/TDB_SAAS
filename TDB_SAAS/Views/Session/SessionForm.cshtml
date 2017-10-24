@@ -10,7 +10,7 @@
 }
 else
 {
-    <h2>Edit Session: @Model.CourseDate</h2>
+    <h2>Edit Session: @(((DateTime)(Model.CourseDate)).ToShortDateString())</h2>
 }
 
 @using (Html.BeginForm("Save", "Session"))
@@ -34,7 +34,14 @@ else
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.CourseDate)
-                <input type="date" class="form-control" id="CourseDate" name="CourseDate" value="@Model.CourseDate" />
+                @if (Model.CourseDate == null)
+                {
+                    <input type="date" class="form-control" id="CourseDate" name="CourseDate" />
+                }
+                else
+                {
+                    <input type="date" class="form-control" id="CourseDate" name="CourseDate" value="@(((DateTime)(Model.CourseDate)).ToString("yyyy-MM-dd"))" />
+                }
                 @Html.ValidationMessageFor(m => m.CourseDate)
             </div>
             <div class="form-group">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using TDB_SAAS.Models;
@@ -10,16 +11,25 @@ namespace TDB_SAAS.ViewModels
     {
         public int ID { get; set; }
 
+        [Display(Name = "Course")]
         public Nullable<int> CourseID { get; set; }
 
+        [Display(Name = "Trainer")]
         public Nullable<int> TrainerID { get; set; }
 
+        [Display(Name = "Location")]
         public Nullable<short> LocationID { get; set; }
 
+        [Display(Name = "Date")]
         public Nullable<DateTime> CourseDate { get; set; }
+
+        [Display(Name = "Start Time")]
         public Nullable<TimeSpan> StartTime { get; set; }
+
+        [Display(Name = "End Time")]
         public Nullable<TimeSpan> EndTime { get; set; }
 
+        [Display(Name = "Maximum People on Course")]
         public short MaxP { get; set; }
 
         public string Notes { get; set; }

@@ -31,7 +31,7 @@
             <td>@session.Endt</td>
             <td>@session.Bookings</td>
             <td>@session.AvailablePlaces</td>
-
+            <td>@Html.ActionLink("Attendances", "Attendances", "Session", new { id = session.ID }, null) </td>
         </tr>
     }
 

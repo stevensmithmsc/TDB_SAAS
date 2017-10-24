@@ -169,6 +169,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\BoroughsController.cs" />
     <Compile Include="Controllers\CohortsController.cs" />
     <Compile Include="Controllers\CostCentresController.cs" />
@@ -380,6 +381,7 @@
     <Content Include="Views\Subjectives\Edit.cshtml" />
     <Content Include="Views\Subjectives\Index.cshtml" />
     <Content Include="Views\Person\Requirements.cshtml" />
+    <Content Include="Views\Session\Attendances.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

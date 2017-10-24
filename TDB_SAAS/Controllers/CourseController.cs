@@ -132,7 +132,7 @@ namespace TDB_SAAS.Controllers
         // GET: Course
         public ActionResult Index()
         {
-            var courses = _context.Courses.Include(c => c.Flags).ToList();
+            var courses = _context.Courses.Include(c => c.Flags).Include(c => c.RequiredBy).Include(c => c.Sessions);
 
             return View(courses);
         }
@@ -140,7 +140,7 @@ namespace TDB_SAAS.Controllers
         
         public ActionResult QuickSearch(String searchString)
         {
-            var courses = _context.Courses.Where(c => c.CourseName.Contains(searchString)).Include(c => c.Flags).ToList();
+            var courses = _context.Courses.Where(c => c.CourseName.Contains(searchString)).Include(c => c.Flags).Include(c => c.RequiredBy);
 
             return View("Index", courses);
         }

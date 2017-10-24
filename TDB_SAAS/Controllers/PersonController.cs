@@ -158,7 +158,8 @@ namespace TDB_SAAS.Controllers
             viewModel.Person = _context.People.SingleOrDefault(p => p.ID == id);
             viewModel.Reqs = _context.People.SingleOrDefault(p => p.ID == id).Requirements.ToArray();
             ViewBag.Statuses = _context.Statuses.Where(s => s.Requirement);
-            ViewBag.Courses = _context.Courses;
+            var requiredCourses = _context.People.SingleOrDefault(p => p.ID == id).Requirements.Select(r => r.Course).ToList();
+            ViewBag.Courses = _context.Courses.ToList().Except(requiredCourses);
             return View(viewModel);
         }
 

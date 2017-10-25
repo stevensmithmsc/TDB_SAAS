@@ -21,7 +21,10 @@
     { @person.GetMainTeam().TeamName }</td>
     <td>@if (person.Cohort != null)
     { @person.Cohort.Code }</td>
-        <td>@Html.ActionLink("Requirements", "Requirements", "Person", new { id = person.ID }, null) </td></tr>
+        <td>@Html.ActionLink("Requirements", "Requirements", "Person", new { id = person.ID }, null) | 
+            @Html.ActionLink("Attendances", "Attendances", "Person", new { id = person.ID }, null)</td></tr>
 }
     
 </table>
+
+@Html.ActionLink("Teams", "Index", "Teams", null, new { @class = "btn btn-info" })

@@ -208,6 +208,83 @@ namespace TDB_SAAS.Controllers
             return RedirectToAction("Index", "Person");
         }
 
+        public ActionResult Attendances(int id)
+        {
+            ViewBag.Staff = _context.People.SingleOrDefault(p => p.ID == id);
+            Attendance[] viewModel = _context.People.SingleOrDefault(p => p.ID == id).Attendances.ToArray();
+            ViewBag.Statuses = _context.Statuses.Where(s => s.Attendance);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateAttendances(Attendance[] attendances)
+        {
+            if (!ModelState.IsValid)
+            {
+                Attendance[] viewModel = attendances;
+                ViewBag.Staff = _context.People.SingleOrDefault(p => p.ID == attendances[0].StaffID);
+                ViewBag.Statuses = _context.Statuses.Where(s => s.Attendance);
+
+                return View("Attendances", viewModel);
+            }
+
+            for (int i = 0; i < attendances.Count(); i++)
+            {
+                int attID = attendances[i].ID;
+                var attendanceInDB = _context.Attendances.SingleOrDefault(a => a.ID == attID);
+                bool changed = false;
+                Person userperson = _context.People.SingleOrDefault(p => p.ID == 0);
+
+                if (attendanceInDB.OutcomeID != attendances[i].OutcomeID)
+                {
+                    attendanceInDB.OutcomeID = attendances[i].OutcomeID;
+                    changed = true;
+                    if (attendances[i].OutcomeID == 6)
+                    {
+                        attendanceInDB.Canceller = userperson;
+                        attendanceInDB.Cancelled = DateTime.Now;
+                    }
+
+                    // update linked requirement!
+                    int StaffID = attendanceInDB.StaffID;
+                    int CourseID = (int)attendanceInDB.Sess.CourseID;
+                    var req = _context.Requirements.SingleOrDefault(r => r.StaffID == StaffID && r.CourseID == CourseID);
+                    short OutID = attendances[i].OutcomeID;
+                    var outcome = _context.Statuses.SingleOrDefault(s => s.ID == OutID);
+                    if (req != null)
+                    {
+                        if (outcome.Requirement)
+                        {
+                            req.Status = outcome;
+                        }
+                        else
+                        {
+                            req.StatusID = (short)1;
+                        }
+                        req.Modifier = userperson;
+                        req.Modified = DateTime.Now;
+                    }
+                }
+
+                if (attendanceInDB.Comments != attendances[i].Comments)
+                {
+                    attendanceInDB.Comments = attendances[i].Comments;
+                    changed = true;
+                }
+
+                if (changed)
+                {
+                    attendanceInDB.Modifier = userperson;
+                    attendanceInDB.Modified = DateTime.Now;
+                }
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Person");
+        }
+
         // GET: Person
         public ActionResult Index()
         {

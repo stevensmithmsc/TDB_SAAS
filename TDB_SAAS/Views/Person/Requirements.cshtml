@@ -81,7 +81,9 @@
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save Changes</button>
 }
-
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
 @section scripts
 {
     <script>

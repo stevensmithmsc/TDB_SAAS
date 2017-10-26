@@ -72,7 +72,7 @@ namespace TDB_SAAS.Controllers
                 }
                 foreach(var bs in viewModel.Boroughs.Where(b => b.Selected))
                 {
-                    person.Boroughs.Add(_context.Boroughs.Single(b => b.ID == bs.boro.ID));
+                    person.Boroughs.Add(_context.Boroughs.Single(b => b.ID == bs.Boro.ID));
                 }
 
                 if (person.TitleID != 0 && person.Gender == null)
@@ -118,7 +118,7 @@ namespace TDB_SAAS.Controllers
 
                 foreach (var bs in viewModel.Boroughs)
                 {
-                    Borough bo = _context.Boroughs.Single(b => b.ID == bs.boro.ID);
+                    Borough bo = _context.Boroughs.Single(b => b.ID == bs.Boro.ID);
                     if (bs.Selected)
                     {
                         if (!personInDb.Boroughs.Contains(bo)) personInDb.Boroughs.Add(bo);

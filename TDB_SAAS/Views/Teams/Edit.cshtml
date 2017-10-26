@@ -1,4 +1,4 @@
-﻿@model TDB_SAAS.Models.Team
+﻿@model TDB_SAAS.ViewModels.TeamFormViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -16,48 +16,91 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TeamName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TeamName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TeamName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TeamName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TeamName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TeamName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FinanceCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("FinanceCode", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FinanceCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FinanceCode, "FinanceCode", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("FinanceCode", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FinanceCode, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LeaderID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("LeaderID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LeaderID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LeaderID, "LeaderID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("LeaderID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.LeaderID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CohortID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("CohortID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CohortID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CohortID, "CohortID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CohortID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CohortID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NoTrain, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.NoTrain)
-                    @Html.ValidationMessageFor(model => model.NoTrain, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NoTrain, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.NoTrain)
+                            @Html.ValidationMessageFor(model => model.NoTrain, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-2">
+                <h4>Boroughs</h4>
+                <div class="form-group">
+                    @for (int i = 0; i < Model.Boroughs.Count(); i++)
+                    {
+                        <div class="checkbox">
+                            @Html.HiddenFor(m => m.Boroughs[i].Boro.ID)
+                            @Html.CheckBoxFor(m => m.Boroughs[i].Selected)
+                            @Html.LabelFor(m => m.Boroughs[i].Selected, Model.Boroughs[i].Boro.BoroughName)
+                            @Html.HiddenFor(m => m.Boroughs[i].Boro.BoroughName)
+                        </div>
+                    }
+                    @Html.ValidationMessageFor(m => m.Boroughs)
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h4>Members</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>@Html.DisplayNameFor(m => m.Members[0].Staff)</td>
+                            <td>@Html.DisplayNameFor(m => m.Members[0].Main)</td>
+                            <td>@Html.DisplayNameFor(m => m.Members[0].Active)</td>
+                        </tr>
+                    </thead>
+                @for (int i = 0; i < Model.Members.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(m => m.Members[i].ID)
+                            @Model.Members[i].Staff.GetFullName()
+                        </td>
+                        <td>@Html.CheckBoxFor(m => m.Members[i].Main)</td>
+                        <td>@Html.CheckBoxFor(m => m.Members[i].Active)</td>
+                    </tr>
+                }
+                </table>
+                @Html.ValidationMessageFor(m => m.Members)
+            </div>
         </div>
+        
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

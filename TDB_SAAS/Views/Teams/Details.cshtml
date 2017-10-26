@@ -12,23 +12,23 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Cohort.Code)
+            @Html.DisplayNameFor(model => model.TeamName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cohort)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Cohort.Code)
-        </dd>
+        </dd>     
 
         <dt>
-            @Html.DisplayNameFor(model => model.Creator.Forename)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Creator.Forename)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Finance.CCName)
+            @Html.DisplayNameFor(model => model.Finance)
         </dt>
 
         <dd>
@@ -36,28 +36,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Leader.Forename)
+            @Html.DisplayNameFor(model => model.Leader)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Leader.Forename)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Modifier.Forename)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Modifier.Forename)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TeamName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TeamName)
-        </dd>
+        </dd>       
 
         <dt>
             @Html.DisplayNameFor(model => model.NoTrain)
@@ -76,11 +60,27 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Creator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Creator.Forename)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Modified)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Modified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modifier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modifier.Forename)
         </dd>
 
     </dl>

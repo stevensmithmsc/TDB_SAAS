@@ -300,6 +300,7 @@
     <Compile Include="ViewModels\PersonFormViewModel.cs" />
     <Compile Include="ViewModels\PersonRequirementsVM.cs" />
     <Compile Include="ViewModels\SessionFormViewModel.cs" />
+    <Compile Include="ViewModels\TeamFormViewModel.cs" />
     <Compile Include="ViewModels\TitleFormViewModel.cs" />
     <Compile Include="ViewModels\Trainer.cs" />
   </ItemGroup>

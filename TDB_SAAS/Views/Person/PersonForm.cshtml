@@ -106,13 +106,13 @@ else
                 @for (int i = 0; i < Model.Boroughs.Count(); i++)
                 {
                     <div class="checkbox">
-                        @Html.HiddenFor(m => m.Boroughs[i].boro.ID)
+                        @Html.HiddenFor(m => m.Boroughs[i].Boro.ID)
                         @Html.CheckBoxFor(m => m.Boroughs[i].Selected)
-                        @Html.LabelFor(m => m.Boroughs[i].Selected, Model.Boroughs[i].boro.BoroughName)
-                        @Html.HiddenFor(m => m.Boroughs[i].boro.BoroughName)
+                        @Html.LabelFor(m => m.Boroughs[i].Selected, Model.Boroughs[i].Boro.BoroughName)
+                        @Html.HiddenFor(m => m.Boroughs[i].Boro.BoroughName)
                     </div>
                 }
-                @Html.ValidationMessageFor(m => m.Flags)
+                @Html.ValidationMessageFor(m => m.Boroughs)
             </div>
         </div>
     </div>

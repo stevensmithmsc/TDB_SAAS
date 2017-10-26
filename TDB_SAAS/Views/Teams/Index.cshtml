@@ -13,19 +13,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Cohort.Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Finance.CCName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Leader.Forename)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.TeamName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Cohort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Finance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Leader)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.NoTrain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoMembers)
         </th>
         <th></th>
     </tr>
@@ -33,19 +36,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.TeamName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Cohort.Code)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Finance.CCName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Leader.Forename)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamName)
+            @Html.DisplayFor(modelItem => item.Leader.Surname)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NoTrain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoMembers)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

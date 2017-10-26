@@ -27,6 +27,7 @@ namespace TDB_SAAS.Models
         public bool NoTrain { get; set; }
 
         public ICollection<TeamMember> Members { get; set; }
+        public virtual int NoMembers { get { return Members.Where(m => m.Active).Count(); } }
 
         public ICollection<Borough> Boroughs { get; set; }
 

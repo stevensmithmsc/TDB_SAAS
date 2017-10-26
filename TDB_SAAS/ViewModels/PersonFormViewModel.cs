@@ -129,12 +129,12 @@ namespace TDB_SAAS.ViewModels
 
         public class BoroughSelector
         {
-            public Borough boro { get; set; }
+            public Borough Boro { get; set; }
             public bool Selected { get; set; }
 
             public BoroughSelector(Borough b)
             {
-                this.boro = b;
+                this.Boro = b;
                 this.Selected = false;
             }
 

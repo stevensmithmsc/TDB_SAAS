@@ -25,7 +25,7 @@ namespace TDB_SAAS.Controllers
 
         public ActionResult New()
         {
-            var viewModel = new PersonFormViewModel(new Person(), _context.Flags, _context.Boroughs);
+            var viewModel = new PersonFormViewModel(new Person(), _context.Flags, _context.Boroughs, _context.Services.Where(s => s.Level == ServiceLevel.Site && s.Display));
             ViewBag.TitleID = new SelectList(_context.Titles, "ID", "TitleValue");
             ViewBag.FinanceCode = new SelectList(_context.CostCentres, "Code", "CCName");
             ViewBag.SubjectiveID = new SelectList(_context.Subjectives, "Code", "Subname");
@@ -142,7 +142,7 @@ namespace TDB_SAAS.Controllers
             var person = _context.People.SingleOrDefault(p => p.ID == id);
             if (person == null) return HttpNotFound();
 
-            var viewModel = new PersonFormViewModel(person, _context.Flags, _context.Boroughs);
+            var viewModel = new PersonFormViewModel(person, _context.Flags, _context.Boroughs, _context.Services.Where(s => s.Level == ServiceLevel.Site && s.Display));
             ViewBag.TitleID = new SelectList(_context.Titles, "ID", "TitleValue");
             ViewBag.FinanceCode = new SelectList(_context.CostCentres, "Code", "CCName");
             ViewBag.SubjectiveID = new SelectList(_context.Subjectives, "Code", "Subname");

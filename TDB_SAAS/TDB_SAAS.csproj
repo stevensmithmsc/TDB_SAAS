@@ -181,10 +181,12 @@
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\SubjectivesController.cs" />
+    <Compile Include="Controllers\TeamMembersController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="DTOs\BookingDTO.cs" />
     <Compile Include="DTOs\NewReqDTO.cs" />
+    <Compile Include="DTOs\TeamMemberDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

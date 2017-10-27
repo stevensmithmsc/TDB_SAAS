@@ -65,13 +65,17 @@ namespace TDB_SAAS.ViewModels
 
         public BoroughSelector[] Boroughs { get; set; }
 
+        public MHC[] MHCs { get; set; }
+
+        public Service[] Services { get; set; }
+
 
         public PersonFormViewModel()
         {
 
         }
 
-        public PersonFormViewModel(Person person, IEnumerable<Flag> AllFlags, IEnumerable<Borough> AllBoros)
+        public PersonFormViewModel(Person person, IEnumerable<Flag> AllFlags, IEnumerable<Borough> AllBoros, IEnumerable<Service> AllMHC)
         {
             this.ID = person.ID;
             this.TitleID = person.TitleID;
@@ -108,6 +112,16 @@ namespace TDB_SAAS.ViewModels
                 Boroughs[i] = bs;
                 i++;
             }
+            this.MHCs = new MHC[AllMHC.Count()];
+            i = 0;
+            foreach (Service s in AllMHC)
+            {
+                MHC mhc = new MHC(s);
+                mhc.Selected = person.Services.Contains(s);
+                MHCs[i] = mhc;
+                i++;
+            }
+            this.Services = person.Services.Where(s => s.Level == ServiceLevel.Speciality && s.Display).ToArray();
 
         }
 
@@ -139,6 +153,22 @@ namespace TDB_SAAS.ViewModels
             }
 
             public BoroughSelector()
+            {
+            }
+        }
+
+        public class MHC
+        {
+            public Service Service { get; set; }
+            public bool Selected { get; set; }
+
+            public MHC(Service s)
+            {
+                this.Service = s;
+                this.Selected = false;
+            }
+
+            public MHC()
             {
             }
         }

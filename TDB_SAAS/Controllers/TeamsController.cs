@@ -60,6 +60,19 @@ namespace TDB_SAAS.Controllers
                 team.Created = DateTime.Now;
                 team.Modifier = userperson;
                 team.Modified = DateTime.Now;
+                // Add leader as member
+                if (team.LeaderID != null && team.LeaderID != 0)
+                {
+                    var mem = new TeamMember();
+                    mem.Team = team;
+                    mem.StaffID = (int)team.LeaderID;
+                    mem.Active = true;
+                    mem.Created = DateTime.Now;
+                    mem.Creator = userperson;
+                    mem.Modified = DateTime.Now;
+                    mem.Modifier = userperson;
+                    team.Members.Add(mem);
+                }
                 db.Teams.Add(team);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,18 +91,21 @@ namespace TDB_SAAS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Team team = db.Teams.Include(t => t.Members).Include(t => t.Boroughs).SingleOrDefault(t => t.ID == id);
+            Team team = db.Teams.Include(t => t.Members).Include(t => t.Boroughs).Include(t => t.Services).SingleOrDefault(t => t.ID == id);
             if (team == null)
             {
                 return HttpNotFound();
             }
 
             IEnumerable<Borough> allBoro = db.Boroughs;
-            TeamFormViewModel viewModel = new TeamFormViewModel(team, allBoro);
+            IEnumerable<Service> allMHC = db.Services.Where(s => s.Level == ServiceLevel.Site && s.Display);
+            TeamFormViewModel viewModel = new TeamFormViewModel(team, allBoro, allMHC);
 
             ViewBag.CohortID = new SelectList(db.Cohorts, "ID", "Code", team.CohortID);
             ViewBag.FinanceCode = new SelectList(db.CostCentres, "Code", "CCName", team.FinanceCode);
-            ViewBag.LeaderID = new SelectList(db.People, "ID", "Forename", team.LeaderID);
+            ViewBag.LeaderID = new SelectList(team.Members.Select(m => m.Staff), "ID", "Forename", team.LeaderID);
+            List<int> members = team.Members.Select(m => m.StaffID).ToList();
+            ViewBag.StaffList = db.People.Where(p => !members.Contains(p.ID)).Where(p => p.ID > 0);
             return View(viewModel);
         }
 
@@ -127,6 +143,19 @@ namespace TDB_SAAS.Controllers
                     }
                 }
 
+                foreach (var mhc in team.MHCs)
+                {
+                    Service s = db.Services.Single(serv => serv.ID == mhc.Service.ID);
+                    if (mhc.Selected)
+                    {
+                        if (!teamInDB.Services.Contains(s)) teamInDB.Services.Add(s);
+                    }
+                    else
+                    {
+                        if (teamInDB.Services.Contains(s)) teamInDB.Services.Remove(s);
+                    }
+                }
+
                 foreach (var mem in team.Members)
                 {
                     var memberInDB = db.TeamMembers.Single(m => m.ID == mem.ID);
@@ -139,6 +168,20 @@ namespace TDB_SAAS.Controllers
                     if (memberInDB.Main != mem.Main)
                     {
                         //if set to main all other records for this person shouldn't be!
+                        if (mem.Main)
+                        {
+                            var staffID = memberInDB.StaffID;
+                            var otherRecords = db.People.Single(p => p.ID == staffID).MemberOf.Where(m => m.ID != mem.ID);
+                            foreach(var otherRecord in otherRecords)
+                            {
+                                if (otherRecord.Main)
+                                {
+                                    otherRecord.Main = false;
+                                    otherRecord.Modified = DateTime.Now;
+                                    otherRecord.Modifier = userperson;
+                                }
+                            }
+                        }
                         memberInDB.Main = mem.Main;
                         changed = true;
                     }

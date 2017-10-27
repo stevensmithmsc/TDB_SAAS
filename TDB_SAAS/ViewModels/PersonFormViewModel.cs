@@ -69,6 +69,8 @@ namespace TDB_SAAS.ViewModels
 
         public Service[] Services { get; set; }
 
+        public TeamMember[] Memberships { get; set; }
+
 
         public PersonFormViewModel()
         {
@@ -122,7 +124,7 @@ namespace TDB_SAAS.ViewModels
                 i++;
             }
             this.Services = person.Services.Where(s => s.Level == ServiceLevel.Speciality && s.Display).ToArray();
-
+            this.Memberships = person.MemberOf.ToArray();
         }
 
         public class FlagSelector

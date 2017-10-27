@@ -74,7 +74,10 @@ namespace TDB_SAAS.Controllers
                 {
                     person.Boroughs.Add(_context.Boroughs.Single(b => b.ID == bs.Boro.ID));
                 }
-
+                foreach(var mhc in viewModel.MHCs.Where(m => m.Selected))
+                {
+                    person.Services.Add(_context.Services.Single(s => s.ID == mhc.Service.ID));
+                }
                 if (person.TitleID != 0 && person.Gender == null)
                 {
                     person.Gender = _context.Titles.SingleOrDefault(t => t.ID == person.TitleID).DefaultGender;
@@ -125,6 +128,55 @@ namespace TDB_SAAS.Controllers
                     } else
                     {
                         if (personInDb.Boroughs.Contains(bo)) personInDb.Boroughs.Remove(bo);
+                    }
+                }
+
+                foreach (var mhc in viewModel.MHCs)
+                {
+                    Service s = _context.Services.Single(serv => serv.ID == mhc.Service.ID);
+                    if (mhc.Selected)
+                    {
+                        if (!personInDb.Services.Contains(s)) personInDb.Services.Add(s);
+                    }
+                    else
+                    {
+                        if (personInDb.Services.Contains(s)) personInDb.Services.Remove(s);
+                    }
+                }
+
+                foreach (var mem in viewModel.Memberships)
+                {
+                    var memberInDB = _context.TeamMembers.Single(m => m.ID == mem.ID);
+                    bool changed = false;
+                    if (memberInDB.Active != mem.Active)
+                    {
+                        memberInDB.Active = mem.Active;
+                        changed = true;
+                    }
+                    if (memberInDB.Main != mem.Main)
+                    {
+                        //if set to main all other records for this person shouldn't be!
+                        if (mem.Main)
+                        {
+                            var staffID = memberInDB.StaffID;
+                            var otherRecords = _context.People.Single(p => p.ID == staffID).MemberOf.Where(m => m.ID != mem.ID);
+                            foreach (var otherRecord in otherRecords)
+                            {
+                                if (otherRecord.Main)
+                                {
+                                    otherRecord.Main = false;
+                                    otherRecord.Modified = DateTime.Now;
+                                    otherRecord.Modifier = userperson;
+                                }
+                            }
+                        }
+                        memberInDB.Main = mem.Main;
+                        changed = true;
+                    }
+                    if (changed)
+                    {
+                        memberInDB.Modified = DateTime.Now;
+                        memberInDB.Modifier = userperson;
                     }
                 }
 

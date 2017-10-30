@@ -123,6 +123,8 @@ namespace TDB_SAAS.Models
 
         public virtual ICollection<Service> Services { get; set; }
 
+        public virtual string FullName {  get { return GetFullName(); } }
+
 
         public Person()
         {

@@ -10,80 +10,108 @@
 <div>
     <h4>Team</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TeamName)
-        </dt>
+    <div class="row">
+        <dl class="dl-horizontal col-md-5 col-sm-6">
+            <dt>
+                @Html.DisplayNameFor(model => model.TeamName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TeamName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TeamName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cohort)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Cohort)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cohort.Code)
-        </dd>     
+            <dd>
+                @Html.DisplayFor(model => model.Cohort.Code)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Finance)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Finance)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Finance.CCName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Finance.CCName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Leader)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Leader)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Leader.Forename)
-        </dd>       
+            <dd>
+                @Html.DisplayFor(model => model.Leader.FullName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NoTrain)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.NoTrain)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NoTrain)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NoTrain)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Created)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Created)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Creator)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Creator)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Creator.Forename)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Creator.FullName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Modified)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Modified)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Modified)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Modified)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Modifier)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Modifier)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Modifier.Forename)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Modifier.FullName)
+            </dd>
 
-    </dl>
+        </dl>
+        <div class="col-md-3 col-sm-3">
+            <h4>Boroughs</h4>
+            <ul>
+                @foreach (var boro in Model.Boroughs)
+                {
+                    <li>@boro.BoroughName</li>
+                }
+             </ul>
+            <hr />
+            <h4>Services</h4>
+            <ul>
+                @foreach (var serv in Model.Services.OrderBy(s => s.Level).ThenBy(s => s.ServiceName))
+                {
+                    <li>@serv.ServiceName</li>
+                }
+            </ul>
+        </div>
+        <div class="col-md-4 col-sm-3">
+            <h4>Members</h4>
+            <ul>
+                @foreach(var mem in Model.Members.Where(m => m.Active).OrderBy(m => m.Staff.Surname).ThenBy(m => m.Staff.Forename))
+                {
+                    <li>@mem.Staff.FullName</li>
+                }
+            </ul>
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |

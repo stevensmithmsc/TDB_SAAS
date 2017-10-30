@@ -29,7 +29,7 @@ namespace TDB_SAAS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Team team = db.Teams.Find(id);
+            Team team = db.Teams.Include(t => t.Boroughs).Include(t => t.Services).Include(t => t.Members).SingleOrDefault(t => t.ID == id);
             if (team == null)
             {
                 return HttpNotFound();
@@ -42,7 +42,7 @@ namespace TDB_SAAS.Controllers
         {
             ViewBag.CohortID = new SelectList(db.Cohorts, "ID", "Code");
             ViewBag.FinanceCode = new SelectList(db.CostCentres, "Code", "CCName");
-            ViewBag.LeaderID = new SelectList(db.People, "ID", "Forename");
+            ViewBag.LeaderID = new SelectList(db.People, "ID", "Fullname");
             return View();
         }
 
@@ -80,7 +80,7 @@ namespace TDB_SAAS.Controllers
 
             ViewBag.CohortID = new SelectList(db.Cohorts, "ID", "Code", team.CohortID);
             ViewBag.FinanceCode = new SelectList(db.CostCentres, "Code", "CCName", team.FinanceCode);
-            ViewBag.LeaderID = new SelectList(db.People, "ID", "Forename", team.LeaderID);
+            ViewBag.LeaderID = new SelectList(db.People, "ID", "Fullname", team.LeaderID);
             return View(team);
         }
 
@@ -103,7 +103,7 @@ namespace TDB_SAAS.Controllers
 
             ViewBag.CohortID = new SelectList(db.Cohorts, "ID", "Code", team.CohortID);
             ViewBag.FinanceCode = new SelectList(db.CostCentres, "Code", "CCName", team.FinanceCode);
-            ViewBag.LeaderID = new SelectList(team.Members.Select(m => m.Staff), "ID", "Forename", team.LeaderID);
+            ViewBag.LeaderID = new SelectList(team.Members.Select(m => m.Staff), "ID", "Fullname", team.LeaderID);
             List<int> members = team.Members.Select(m => m.StaffID).ToList();
             ViewBag.StaffList = db.People.Where(p => !members.Contains(p.ID)).Where(p => p.ID > 0);
             return View(viewModel);
@@ -197,7 +197,7 @@ namespace TDB_SAAS.Controllers
             }
             ViewBag.CohortID = new SelectList(db.Cohorts, "ID", "Code", team.CohortID);
             ViewBag.FinanceCode = new SelectList(db.CostCentres, "Code", "CCName", team.FinanceCode);
-            ViewBag.LeaderID = new SelectList(db.People, "ID", "Forename", team.LeaderID);
+            ViewBag.LeaderID = new SelectList(db.People, "ID", "Fullname", team.LeaderID);
             return View(team);
         }
 

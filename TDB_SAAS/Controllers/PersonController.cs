@@ -29,7 +29,9 @@ namespace TDB_SAAS.Controllers
             ViewBag.TitleID = new SelectList(_context.Titles, "ID", "TitleValue");
             ViewBag.FinanceCode = new SelectList(_context.CostCentres, "Code", "CCName");
             ViewBag.SubjectiveID = new SelectList(_context.Subjectives, "Code", "Subname");
-            ViewBag.CohortID = new SelectList(_context.Cohorts, "ID", "CohortDescription");
+            ViewBag.CohortID = new SelectList(_context.Cohorts.OrderBy(c => c.Number), "ID", "CohortDescription");
+            ViewBag.LineManID = new SelectList(_context.People.Where(p => p.Flags.Select(f => f.ID).Contains("LMR")), "ID", "FullName");
+            ViewBag.TeamList = _context.Teams.OrderBy(t => t.TeamName);
 
             return View("PersonForm", viewModel);
         }
@@ -43,7 +45,10 @@ namespace TDB_SAAS.Controllers
                 ViewBag.TitleID = new SelectList(_context.Titles, "ID", "TitleValue");
                 ViewBag.FinanceCode = new SelectList(_context.CostCentres, "Code", "CCName");
                 ViewBag.SubjectiveID = new SelectList(_context.Subjectives, "Code", "Subname");
-                ViewBag.CohortID = new SelectList(_context.Cohorts, "ID", "CohortDescription");
+                ViewBag.CohortID = new SelectList(_context.Cohorts.OrderBy(c => c.Number), "ID", "CohortDescription");
+                ViewBag.LineManID = new SelectList(_context.People.Where(p => p.Flags.Select(f => f.ID).Contains("LMR")), "ID", "FullName");
+                List<int> teams = _context.People.SingleOrDefault(p => p.ID == viewModel.ID).MemberOf.Select(m => m.TeamID).ToList();
+                ViewBag.TeamList = _context.Teams.Where(p => !teams.Contains(p.ID)).OrderBy(t => t.TeamName);
                 return View("PersonForm", viewModel);
             }
 
@@ -198,7 +203,10 @@ namespace TDB_SAAS.Controllers
             ViewBag.TitleID = new SelectList(_context.Titles, "ID", "TitleValue");
             ViewBag.FinanceCode = new SelectList(_context.CostCentres, "Code", "CCName");
             ViewBag.SubjectiveID = new SelectList(_context.Subjectives, "Code", "Subname");
-            ViewBag.CohortID = new SelectList(_context.Cohorts, "ID", "CohortDescription");
+            ViewBag.CohortID = new SelectList(_context.Cohorts.OrderBy(c => c.Number), "ID", "CohortDescription");
+            ViewBag.LineManID = new SelectList(_context.People.Where(p => p.Flags.Select(f => f.ID).Contains("LMR")), "ID", "FullName");
+            List<int> teams = person.MemberOf.Select(m => m.TeamID).ToList();
+            ViewBag.TeamList = _context.Teams.Where(p => !teams.Contains(p.ID)).OrderBy(t => t.TeamName);
             return View("PersonForm", viewModel);
         }
 

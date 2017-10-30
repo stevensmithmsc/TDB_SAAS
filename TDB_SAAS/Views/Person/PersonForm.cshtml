@@ -61,6 +61,11 @@ else
                 @Html.ValidationMessageFor(m => m.JobTitle)
             </div>
             <div class="form-group">
+                @Html.LabelFor(m => m.LineManID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.LineManID, null, "Select Line Manager", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.LineManID, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(m => m.FinanceCode, htmlAttributes: new { @class = "control-label" })
                 @Html.DropDownListFor(m => m.FinanceCode, null, "Select Finance Cost Code", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.FinanceCode, "", new { @class = "text-danger" })
@@ -144,7 +149,7 @@ else
                 </ul>
             </div>
             <div class="col-md-8 col-sm-6">
-                <h4>Members</h4>
+                <h4>Team Memberships</h4>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -166,6 +171,10 @@ else
                     }
                 </table>
                 @Html.ValidationMessageFor(m => m.Memberships)
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    Add New Member
+                </button>
             </div>
         </div>
     }
@@ -178,7 +187,60 @@ else
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New Team for @Model.Forename @Model.Surname</h4>
+            </div>
+            <form id="newmem">
+                <div class="modal-body">
+                    <input name="StaffID" id="StaffID" type="hidden" value="@Model.ID" data-val-required="The TeamID field is required." data-val-number="The field TeamID must be a number." data-val="true">
+                    <div class="form-group">
+                        <label for="TeamID">Staff Member: </label>
+                        @Html.DropDownList("TeamID", new SelectList(ViewBag.TeamList, "ID", "TeamName"), "Please Select Team", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="checkbox">
+                        <label for="Active">Active</label>
+                        <input type="checkbox" id="Active" name="Active" value="true" data-val="true" checked="checked">
+                    </div>
+                    <div class="checkbox">
+                        <label for="Main">Main</label>
+                        <input type="checkbox" id="Main" name="Main" value="true" data-val="true">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $( '#newmem' ).submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/api/TeamMembers",
+                    data: $("#newmem").serialize(),
+                    success: function (data) {
+                        $('#myModal').modal('hide');
+                        console.log(data);
+                        location.reload(true);
+                    },
+                    error: function (data) {
+                        alert("There was a problem");
+                        console.log(data);
+                    }
+                });
+            });
+        });
+    </script>
 }

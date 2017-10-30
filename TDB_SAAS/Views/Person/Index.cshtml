@@ -11,11 +11,10 @@
 <table class="table table-striped">
 
 
-@foreach (var person in Model)
+@foreach (var person in Model.OrderBy(p => p.Surname).ThenBy(p => p.Forename))
 {
     <tr>
     <td>@Html.ActionLink(person.GetFullName(), "Edit", "Person", new { id = person.ID }, null) </td>
-    <td>@person.Gender</td>
     <td>@person.JobTitle</td>
     <td>@if (person.GetMainTeam() != null)
     { @person.GetMainTeam().TeamName }</td>

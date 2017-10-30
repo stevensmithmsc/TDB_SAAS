@@ -1,17 +1,26 @@
 ﻿@model TDB_SAAS.Models.Attendance[]
 
 @{
-    ViewBag.Title = "Attendances";
+    ViewBag.Title = ViewBag.Session.Strt > DateTime.Now ? "Bookings" : "Attendances";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6">
+        <h2>@ViewBag.Session.Course.CourseName</h2>
+        <p>
+            Trainer: @ViewBag.Session.Trainer.GetFullName()<br />
+            Location: @ViewBag.Session.Location.LocationName
+        </p>
+    </div>
+    <div class="col-lg-9 col-md-8 col-sm-6">
+        <h3>@ViewBag.Session.Strt.ToShortDateString()</h3>
+        <p>@ViewBag.Session.Strt.ToShortTimeString() - @ViewBag.Session.Endt.ToShortTimeString()</p>
+    </div>
+</div>
 
-<h2>@ViewBag.Session.Course.CourseName</h2>
-<p>Trainer: @ViewBag.Session.Trainer.GetFullName()<br/>
-Location: @ViewBag.Session.Location.LocationName</p>
-<h3>@ViewBag.Session.Strt.ToShortDateString()</h3>
-<p>@ViewBag.Session.Strt.ToShortTimeString() - @ViewBag.Session.Endt.ToShortTimeString()</p>
+
 <hr />
-<h2>Attendances</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("UpdateAttendances", "Session"))
 {
@@ -61,7 +70,7 @@ Location: @ViewBag.Session.Location.LocationName</p>
 <form id="BookPerson" class="form-inline">
     <div class="form-inline">
         <label for="StaffID">Staff Member: </label>
-        @Html.DropDownList("StaffID", new SelectList(ViewBag.StaffList, "ID", "Surname"), "Please Select Staff Member", htmlAttributes: new { @class = "form-control" })
+        @Html.DropDownList("StaffID", new SelectList(ViewBag.StaffList, "ID", "FullName"), "Please Select Staff Member", htmlAttributes: new { @class = "form-control" })
         <label for="BkComments">Comments: </label>
         <input type="text" class="form-control" id="BkComments" name="BkComments" placeholder="Enter Comments">
         <input name="SessID" id="SessID" type="hidden" value="@ViewBag.Session.ID">

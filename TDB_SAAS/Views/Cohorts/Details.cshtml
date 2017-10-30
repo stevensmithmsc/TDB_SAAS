@@ -11,21 +11,6 @@
     <h4>Cohort</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Creator.Forename)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Creator.Forename)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Modifier.Forename)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Modifier.Forename)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Code)
@@ -68,11 +53,27 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Creator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Creator.FullName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Modified)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Modified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modifier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modifier.FullName)
         </dd>
 
     </dl>

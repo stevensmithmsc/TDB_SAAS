@@ -12,19 +12,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Creator.Forename)
+            @Html.DisplayNameFor(model => model.ID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Creator.Forename)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Modifier.Forename)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Modifier.Forename)
+            @Html.DisplayFor(model => model.ID)
         </dd>
 
         <dt>
@@ -60,6 +52,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Creator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Creator.FullName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Modified)
         </dt>
 
@@ -67,6 +67,13 @@
             @Html.DisplayFor(model => model.Modified)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Modifier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modifier.FullName)
+        </dd>
     </dl>
 </div>
 <p>

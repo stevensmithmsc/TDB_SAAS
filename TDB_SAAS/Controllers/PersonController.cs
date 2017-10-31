@@ -352,5 +352,14 @@ namespace TDB_SAAS.Controllers
 
             return View(people);
         }
+
+        // GET: Person/Details
+        public ActionResult Details(int id)
+        {
+            var person = _context.People.SingleOrDefault(p => p.ID == id);
+            if (person == null) return HttpNotFound();
+
+            return View(person);
+        }
     }
 }

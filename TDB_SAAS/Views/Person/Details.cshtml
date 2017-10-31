@@ -1,0 +1,286 @@
+﻿@model TDB_SAAS.Models.Person
+
+@{
+    ViewBag.Title = Model.FullName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Person - @Model.FullName</h2>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title.TitleValue)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Forename)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Forename)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MiddleName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MiddleName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Surname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Surname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PreferredName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PreferredName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.JobTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LineManager)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LineManager.FullName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Finance)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Finance.CCName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.JobStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.JobStatus.SubName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Cohort)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cohort.CohortDescription)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ESRID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ESRID)
+            </dd>
+
+
+        </dl>
+    </div>
+    <div class="col-md-3">
+        <ul>
+            @foreach (var f in Model.Flags)
+            {
+                <li>@f.TheFlag</li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h4>Teams:</h4>
+        <ul>
+            @foreach (var m in Model.MemberOf.Where(mem => mem.Active).OrderBy(mem => mem.Team.TeamName))
+            {
+                <li>@m.Team.TeamName</li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-3">
+        <h4>Boroughs:</h4>
+        <ul>
+            @foreach (var b in Model.Boroughs.OrderBy(boro => boro.BoroughName))
+            {
+                <li>@b.BoroughName</li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h4>Services:</h4>
+        <ul>
+            @foreach (var s in Model.Services.OrderBy(serv => serv.Level).ThenBy(serv => serv.ServiceName))
+            {
+                <li>@s.ServiceName</li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Comments)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Comments)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Created)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Created)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Creator)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Creator.FullName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Modified)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Modified)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Modifier)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Modifier.FullName)
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+<hr />
+<div>
+    <h3>Requirements</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Course</th>
+            <th>Status</th>
+            <th>Comments</th>
+        </tr>        
+        @foreach (var req in Model.Requirements.OrderBy(r => r.StatusID).ThenBy(r => r.Course.CourseName))
+        {
+            <tr>
+                <td>
+                    @req.Course.CourseName
+                </td>
+                <td>
+                    @req.Status.StatusDesc
+                </td>
+                <td>
+                    @req.Comments
+                </td>
+            </tr>
+        }
+    </table>
+    <p>@Html.ActionLink("Edit Requirements", "Requirements", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")</p>
+</div>
+<hr />
+<div>
+    <h3>Attendances</h3>
+    <table class="table table-striped">
+            <tr>
+                <th>Course</th>
+                <th>Date and Time</th>
+                <th>Trainer</th>
+                <th>Location</th>
+                <th>Outcome</th>
+                <th>Comments</th>
+            </tr>
+        <tbody>
+            @foreach (var att in Model.Attendances.OrderBy(a => a.Sess.Strt))
+            {
+                <tr>
+                    <td>
+                        @att.Sess.Course.CourseName
+                    </td>
+                    <td>
+                        @(((DateTime)(att.Sess.Strt)).ToShortDateString())
+                        @(((DateTime)(att.Sess.Strt)).ToShortTimeString()) -
+                        @(((DateTime)(att.Sess.Endt)).ToShortTimeString())
+                    </td>
+                    <td>@att.Sess.Trainer.GetFullName()</td>
+                    <td>@att.Sess.Location.LocationName</td>
+                    <td>
+                        @att.Outcome.StatusDesc
+                    </td>
+                    <td>
+                        @att.Comments
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p>
+        @Html.ActionLink("Edit Attendances", "Attendances", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

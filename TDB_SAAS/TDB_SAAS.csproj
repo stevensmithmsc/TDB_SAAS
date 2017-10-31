@@ -394,6 +394,7 @@
     <Content Include="Views\Flags\Details.cshtml" />
     <Content Include="Views\Flags\Edit.cshtml" />
     <Content Include="Views\Flags\Index.cshtml" />
+    <Content Include="Views\Person\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

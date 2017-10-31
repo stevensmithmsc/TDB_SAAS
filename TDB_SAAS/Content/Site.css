@@ -75,3 +75,8 @@ A:hover { text-decoration: underline }
 .model-header {
     background-color: #283c96;
 }
+
+.dl-horizontal {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}

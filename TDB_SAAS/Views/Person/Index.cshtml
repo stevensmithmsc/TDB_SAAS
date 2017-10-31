@@ -14,13 +14,14 @@
 @foreach (var person in Model.OrderBy(p => p.Surname).ThenBy(p => p.Forename))
 {
     <tr>
-    <td>@Html.ActionLink(person.GetFullName(), "Edit", "Person", new { id = person.ID }, null) </td>
+    <td>@Html.ActionLink(person.GetFullName(), "Details", "Person", new { id = person.ID }, null) </td>
     <td>@person.JobTitle</td>
     <td>@if (person.GetMainTeam() != null)
     { @person.GetMainTeam().TeamName }</td>
     <td>@if (person.Cohort != null)
     { @person.Cohort.Code }</td>
-        <td>@Html.ActionLink("Requirements", "Requirements", "Person", new { id = person.ID }, null) | 
+        <td>@Html.ActionLink("Edit", "Edit", "Person", new { id = person.ID }, null) |
+            @Html.ActionLink("Requirements", "Requirements", "Person", new { id = person.ID }, null) | 
             @Html.ActionLink("Attendances", "Attendances", "Person", new { id = person.ID }, null)</td></tr>
 }
     

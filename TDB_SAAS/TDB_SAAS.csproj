@@ -260,6 +260,14 @@
     <Compile Include="Migrations\201708161527302_AddCohortsToDB.Designer.cs">
       <DependentUpon>201708161527302_AddCohortsToDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710311523467_add TNA.cs" />
+    <Compile Include="Migrations\201710311523467_add TNA.Designer.cs">
+      <DependentUpon>201710311523467_add TNA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311549559_Add TNA Audit Fields.cs" />
+    <Compile Include="Migrations\201710311549559_Add TNA Audit Fields.Designer.cs">
+      <DependentUpon>201710311549559_Add TNA Audit Fields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Borough.cs" />
@@ -283,6 +291,7 @@
     <Compile Include="Models\EntityConfigurations\TeamConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\TeamMemberConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\TitleConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\TNAConfiguration.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Person.cs" />
@@ -297,6 +306,7 @@
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Models\Title.cs" />
+    <Compile Include="Models\TNA.cs" />
     <Compile Include="Models\TrainDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CourseFormViewModel.cs" />
@@ -395,6 +405,7 @@
     <Content Include="Views\Flags\Edit.cshtml" />
     <Content Include="Views\Flags\Index.cshtml" />
     <Content Include="Views\Person\Details.cshtml" />
+    <Content Include="Views\Person\TNA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -458,6 +469,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708161527302_AddCohortsToDB.resx">
       <DependentUpon>201708161527302_AddCohortsToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311523467_add TNA.resx">
+      <DependentUpon>201710311523467_add TNA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311549559_Add TNA Audit Fields.resx">
+      <DependentUpon>201710311549559_Add TNA Audit Fields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

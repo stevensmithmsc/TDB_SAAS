@@ -79,6 +79,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Subjective> SubjectivesCreated { get; set; }
         public virtual ICollection<Service> ServicesCreated { get; set; }
         public virtual ICollection<Cohort> CohortsCreated { get; set; }
+        public virtual ICollection<TNA> TNAsCreated { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -104,6 +105,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Subjective> SubjectivesModified { get; set; }
         public virtual ICollection<Service> ServicesModified { get; set; }
         public virtual ICollection<Cohort> CohortsModified { get; set; }
+        public virtual ICollection<TNA> TNAsModified { get; set; }
 
         public DateTime Modified { get; set; }
 
@@ -122,6 +124,10 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Borough> Boroughs { get; set; }
 
         public virtual ICollection<Service> Services { get; set; }
+
+        public virtual TNA TNA { get; set; }
+
+        public virtual ICollection<TNA> TNAsAsTrainer { get; set; }
 
         public virtual string FullName {  get { return GetFullName(); } }
 
@@ -172,6 +178,9 @@ namespace TDB_SAAS.Models
             ServicesModified = new HashSet<Service>();
             CohortsCreated = new HashSet<Cohort>();
             CohortsModified = new HashSet<Cohort>();
+            TNAsAsTrainer = new HashSet<TNA>();
+            TNAsCreated = new HashSet<TNA>();
+            TNAsModified = new HashSet<TNA>();
         }
 
         public string GetFullName()

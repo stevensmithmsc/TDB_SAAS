@@ -345,12 +345,54 @@ namespace TDB_SAAS.Controllers
             return RedirectToAction("Index", "Person");
         }
 
-        // GET: Person
-        public ActionResult Index()
+        public ActionResult TNA(int id)
         {
-            var people = _context.People.Where(p => p.ID > 0).Include(p => p.Title).Include(p => p.Cohort);
+            var person = _context.People.SingleOrDefault(p => p.ID == id);
+            if (person == null) return HttpNotFound();
+            ViewBag.person = person;
+            TNA TNA = person.TNA;
+            if (TNA == null)
+            {
+                TNA = new TNA();
+                TNA.StaffID = person.ID;
+            }
 
-            return View(people);
+            var TrainerList = _context.People.Where(p => p.Flags.Any(f => f.ID == "TRN"))
+                                             .Select(p => new Trainer { ID = p.ID, FName = p.Forename, SName = p.Surname })
+                                             .ToList();
+            ViewBag.TrainerID = new SelectList(TrainerList, "ID", "Name");
+            ViewBag.OutcomeID = new SelectList(_context.Statuses.Where(s => s.TNA_OUT), "ID", "StatusDesc");
+
+            return View(TNA);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveTNA(TNA tNA)
+        {
+            var TNAInDb = _context.TNAs.SingleOrDefault(t => t.StaffID == tNA.StaffID);
+            Person userperson = _context.People.SingleOrDefault(p => p.ID == 0);
+
+            if (TNAInDb == null)
+            {
+                TNAInDb = new Models.TNA();
+                TNAInDb.StaffID = tNA.StaffID;
+                TNAInDb.Creator = userperson;
+                TNAInDb.Created = DateTime.Now;
+                _context.TNAs.Add(TNAInDb);
+            }
+
+            TNAInDb.DateReceived = tNA.DateReceived;
+            TNAInDb.TrainerID = tNA.TrainerID;
+            TNAInDb.ContactDate = tNA.ContactDate;
+            TNAInDb.ContactOutcome = tNA.ContactOutcome;
+            TNAInDb.OutcomeID = tNA.OutcomeID;
+            TNAInDb.Modified = DateTime.Now;
+            TNAInDb.Modifier = userperson;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Person");
         }
 
         // GET: Person/Details
@@ -361,5 +403,14 @@ namespace TDB_SAAS.Controllers
 
             return View(person);
         }
+
+        // GET: Person
+        public ActionResult Index()
+        {
+            var people = _context.People.Where(p => p.ID > 0).Include(p => p.Title).Include(p => p.Cohort);
+
+            return View(people);
+        }
+        
     }
 }

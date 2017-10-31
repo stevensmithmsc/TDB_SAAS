@@ -26,6 +26,7 @@ namespace TDB_SAAS.Models
 
         public ICollection<Requirement> RequirementsWithStatus { get; set; }
         public ICollection<Attendance> AttendanceWithStatus { get; set; }
+        public ICollection<TNA> TNAsWithStatus { get; set; }
 
         public int CreatorID { get; set; }
         public virtual Person Creator { get; set; }

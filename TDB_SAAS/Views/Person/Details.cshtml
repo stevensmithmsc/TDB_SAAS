@@ -218,6 +218,100 @@
 </div>
 <hr />
 <div>
+    <h3>TNA</h3>
+    @if(Model.TNA == null)
+    {
+        <p>No TNA recorded for this person.</p>
+    }
+    else
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TNA.DateReceived)
+            </dt>
+
+            <dd>
+                @if (Model.TNA.DateReceived != null)
+                {
+                    @(((DateTime)(Model.TNA.DateReceived)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TNA.Trainer)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TNA.Trainer.FullName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TNA.ContactDate)
+            </dt>
+
+            <dd>
+                @if (Model.TNA.ContactDate != null)
+                {
+                    @(((DateTime)(Model.TNA.ContactDate)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TNA.ContactOutcome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TNA.ContactOutcome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TNA.Outcome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TNA.Outcome.StatusDesc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TNA.Created)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TNA.Created)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TNA.Creator)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TNA.Creator.FullName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TNA.Modified)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TNA.Modified)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TNA.Modifier)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TNA.Modifier.FullName)
+            </dd>
+        </dl>
+    }
+    <p>
+        @Html.ActionLink("Edit TNA", "TNA", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+<hr />
+<div>
     <h3>Requirements</h3>
     <table class="table table-striped">
         <tr>

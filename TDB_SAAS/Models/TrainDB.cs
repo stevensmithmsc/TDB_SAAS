@@ -36,6 +36,7 @@ namespace TDB_SAAS.Models
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Cohort> Cohorts { get; set; }
         public virtual DbSet<TNA> TNAs { get; set; }
+        public virtual DbSet<RA> RAs { get; set; }
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
@@ -59,6 +60,7 @@ namespace TDB_SAAS.Models
             modelBuilder.Configurations.Add(new ServiceConfiguration());
             modelBuilder.Configurations.Add(new CohortConfiguration());
             modelBuilder.Configurations.Add(new TNAConfiguration());
+            modelBuilder.Configurations.Add(new RAConfiguration());
         }
     }
 

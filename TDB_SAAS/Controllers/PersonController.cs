@@ -395,6 +395,67 @@ namespace TDB_SAAS.Controllers
             return RedirectToAction("Index", "Person");
         }
 
+        public ActionResult RA(int id)
+        {
+            var person = _context.People.SingleOrDefault(p => p.ID == id);
+            if (person == null) return HttpNotFound();
+            ViewBag.person = person;
+            RA RA = person.RA;
+            if (RA == null)
+            {
+                RA = new RA();
+                RA.StaffID = person.ID;
+            }
+
+            ViewBag.PDSRoleID = new SelectList(_context.Statuses.Where(s => s.RA_PDS), "ID", "StatusDesc");
+            ViewBag.PLUSUpdatedID = new SelectList(_context.Statuses.Where(s => s.RA_PLUS), "ID", "StatusDesc");
+            ViewBag.ESRUpdatedID = new SelectList(_context.Statuses.Where(s => s.RA_ESR), "ID", "StatusDesc");
+
+            return View(RA);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveRA(RA rA)
+        {
+            var RAInDb = _context.RAs.SingleOrDefault(r => r.StaffID == rA.StaffID);
+            Person userperson = _context.People.SingleOrDefault(p => p.ID == 0);
+
+            if (RAInDb == null)
+            {
+                RAInDb = new Models.RA();
+                RAInDb.StaffID = rA.StaffID;
+                RAInDb.Creator = userperson;
+                RAInDb.Created = DateTime.Now;
+                _context.RAs.Add(RAInDb);
+            }
+
+            RAInDb.UUID = rA.UUID;
+            RAInDb.PDSRoleID = rA.PDSRoleID;
+            RAInDb.PLUSUpdatedID = rA.PLUSUpdatedID;
+            RAInDb.ESRUpdatedID = rA.ESRUpdatedID;
+            RAInDb.EGifL3 = rA.EGifL3;
+            RAInDb.Declaration = rA.Declaration;
+            RAInDb.GoLiveApproved = rA.GoLiveApproved;
+            RAInDb.GLALocked = rA.GLALocked;
+            RAInDb.CHGoLiveAprv = rA.CHGoLiveAprv;
+            RAInDb.CHGLALocked = rA.CHGLALocked;
+            RAInDb.AccountCreated = rA.AccountCreated;
+            RAInDb.AddCITRIX = rA.AddCITRIX;
+            RAInDb.PasswordEmailed = rA.PasswordEmailed;
+            RAInDb.AccessToPlus = rA.AccessToPlus;
+            RAInDb.UUIDAddESR = rA.UUIDAddESR;
+            RAInDb.FullyCompliant = rA.FullyCompliant;
+            RAInDb.RAComments = rA.RAComments;
+            
+            RAInDb.Modified = DateTime.Now;
+            RAInDb.Modifier = userperson;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Person");
+        }
+
         // GET: Person/Details
         public ActionResult Details(int id)
         {

@@ -312,6 +312,204 @@
 </div>
 <hr />
 <div>
+    <h3>RA</h3>
+    @if (Model.RA == null)
+    {
+        <p>No RA details recorded for this person.</p>
+    }
+    else
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.UUID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RA.UUID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.PDSRole)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RA.PDSRole.StatusDesc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.PlusUpdated)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RA.PlusUpdated.StatusDesc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.ESRUpdated)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RA.ESRUpdated.StatusDesc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.EGifL3)
+            </dt>
+
+            <dd>
+                @if (Model.RA.EGifL3 != null)
+                {
+                    @(((DateTime)(Model.RA.EGifL3)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.Declaration)
+            </dt>
+
+            <dd>
+                @if (Model.RA.Declaration != null)
+                {
+                    @(((DateTime)(Model.RA.Declaration)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.GoLiveApproved)
+            </dt>
+
+            <dd>
+                @if (Model.RA.GoLiveApproved != null)
+                {
+                    @(((DateTime)(Model.RA.GoLiveApproved)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.CHGoLiveAprv)
+            </dt>
+
+            <dd>
+                @if (Model.RA.CHGoLiveAprv != null)
+                {
+                    @(((DateTime)(Model.RA.CHGoLiveAprv)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.AccountCreated)
+            </dt>
+
+            <dd>
+                @if (Model.RA.AccountCreated != null)
+                {
+                    @(((DateTime)(Model.RA.AccountCreated)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.AddCITRIX)
+            </dt>
+
+            <dd>
+                @if (Model.RA.AddCITRIX != null)
+                {
+                    @(((DateTime)(Model.RA.AddCITRIX)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.PasswordEmailed)
+            </dt>
+
+            <dd>
+                @if (Model.RA.PasswordEmailed != null)
+                {
+                    @(((DateTime)(Model.RA.PasswordEmailed)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.AccessToPlus)
+            </dt>
+
+            <dd>
+                @if (Model.RA.AccessToPlus != null)
+                {
+                    @(((DateTime)(Model.RA.AccessToPlus)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.UUIDAddESR)
+            </dt>
+
+            <dd>
+                @if (Model.RA.UUIDAddESR != null)
+                {
+                    @(((DateTime)(Model.RA.UUIDAddESR)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.FullyCompliant)
+            </dt>
+
+            <dd>
+                @if (Model.RA.FullyCompliant != null)
+                {
+                    @(((DateTime)(Model.RA.FullyCompliant)).ToShortDateString());
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.RAComments)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RA.RAComments)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.Created)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RA.Created)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.Creator)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RA.Creator.FullName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.Modified)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RA.Modified)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RA.Modifier)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RA.Modifier.FullName)
+            </dd>
+        </dl>
+    }
+    <p>
+        @Html.ActionLink("Edit RA", "RA", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+<hr />
+<div>
     <h3>Requirements</h3>
     <table class="table table-striped">
         <tr>

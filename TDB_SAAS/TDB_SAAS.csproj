@@ -268,6 +268,14 @@
     <Compile Include="Migrations\201710311549559_Add TNA Audit Fields.Designer.cs">
       <DependentUpon>201710311549559_Add TNA Audit Fields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711011410309_Add RA Table.cs" />
+    <Compile Include="Migrations\201711011410309_Add RA Table.Designer.cs">
+      <DependentUpon>201711011410309_Add RA Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711011438402_Amend RA Table.cs" />
+    <Compile Include="Migrations\201711011438402_Amend RA Table.Designer.cs">
+      <DependentUpon>201711011438402_Amend RA Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Borough.cs" />
@@ -284,6 +292,7 @@
     <Compile Include="Models\EntityConfigurations\FlagConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\LocationConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\PersonConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\RAConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\RequirementConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\ServiceConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\StatusConfiguration.cs" />
@@ -296,6 +305,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Flag.cs" />
+    <Compile Include="Models\RA.cs" />
     <Compile Include="Models\Requirement.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ServiceLevel.cs" />
@@ -406,6 +416,7 @@
     <Content Include="Views\Flags\Index.cshtml" />
     <Content Include="Views\Person\Details.cshtml" />
     <Content Include="Views\Person\TNA.cshtml" />
+    <Content Include="Views\Person\RA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -475,6 +486,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710311549559_Add TNA Audit Fields.resx">
       <DependentUpon>201710311549559_Add TNA Audit Fields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711011410309_Add RA Table.resx">
+      <DependentUpon>201711011410309_Add RA Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711011438402_Amend RA Table.resx">
+      <DependentUpon>201711011438402_Amend RA Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

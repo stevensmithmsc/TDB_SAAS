@@ -1,0 +1,245 @@
+﻿@model TDB_SAAS.Models.RA
+
+@{
+    ViewBag.Title = "RA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RA - @ViewBag.person.FullName</h2>
+
+@using (Html.BeginForm("SaveRA", "Person"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.StaffID)
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UUID, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.UUID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UUID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PDSRoleID, "PDS Role", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("PDSRoleID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PDSRoleID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PLUSUpdatedID, "PLUS Updated", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("PLUSUpdatedID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PLUSUpdatedID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ESRUpdatedID, "ESR Updated", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("ESRUpdatedID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ESRUpdatedID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EGifL3, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @if (Model.EGifL3 == null)
+                        {
+                            <input type="date" class="form-control" id="EGifL3" name="EGifL3" />
+                        }
+                        else
+                        {
+                            <input type="date" class="form-control" id="EGifL3" name="EGifL3" value="@(((DateTime)(Model.EGifL3)).ToString("yyyy-MM-dd"))" />
+                        }
+                        @Html.ValidationMessageFor(model => model.EGifL3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Declaration, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @if (Model.Declaration == null)
+                        {
+                            <input type="date" class="form-control" id="Declaration" name="Declaration" />
+                        }
+                        else
+                        {
+                            <input type="date" class="form-control" id="Declaration" name="Declaration" value="@(((DateTime)(Model.Declaration)).ToString("yyyy-MM-dd"))" />
+                        }
+                        @Html.ValidationMessageFor(model => model.Declaration, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    
+                        @Html.LabelFor(model => model.GoLiveApproved, htmlAttributes: new { @class = "control-label col-sm-5" })
+                        <div class="col-sm-6">
+                            @if (Model.GoLiveApproved == null)
+                            {
+                                <input type="date" class="form-control" id="GoLiveApproved" name="GoLiveApproved" />
+                            }
+                            else
+                            {
+                                <input type="date" class="form-control" id="GoLiveApproved" name="GoLiveApproved" value="@(((DateTime)(Model.GoLiveApproved)).ToString("yyyy-MM-dd"))" />
+                            }
+                            @Html.ValidationMessageFor(model => model.GoLiveApproved, "", new { @class = "text-danger" })
+                        </div>
+                    
+
+                    <div class="col-sm-1">
+                        @Html.LabelFor(model => model.GLALocked, "Locked", htmlAttributes: new { @class = "sr-only" })
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.GLALocked)
+                            @Html.ValidationMessageFor(model => model.GLALocked, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row form-group">
+                    
+                        @Html.LabelFor(model => model.CHGoLiveAprv, htmlAttributes: new { @class = "control-label col-sm-5" })
+                        <div class="col-sm-6">
+                            @if (Model.CHGoLiveAprv == null)
+                            {
+                                <input type="date" class="form-control" id="CHGoLiveAprv" name="CHGoLiveAprv" />
+                            }
+                            else
+                            {
+                                <input type="date" class="form-control" id="CHGoLiveAprv" name="CHGoLiveAprv" value="@(((DateTime)(Model.CHGoLiveAprv)).ToString("yyyy-MM-dd"))" />
+                            }
+                            @Html.ValidationMessageFor(model => model.CHGoLiveAprv, "", new { @class = "text-danger" })
+                        </div>
+                    
+
+                    <div class="col-sm-1">
+                        <div class="checkbox">
+                            @Html.LabelFor(model => model.CHGLALocked, "Locked", htmlAttributes: new { @class = "sr-only" })
+                            @Html.EditorFor(model => model.CHGLALocked)
+                            @Html.ValidationMessageFor(model => model.CHGLALocked, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccountCreated, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @if (Model.AccountCreated == null)
+                        {
+                            <input type="date" class="form-control" id="AccountCreated" name="AccountCreated" />
+                        }
+                        else
+                        {
+                            <input type="date" class="form-control" id="AccountCreated" name="AccountCreated" value="@(((DateTime)(Model.AccountCreated)).ToString("yyyy-MM-dd"))" />
+                        }
+                        @Html.ValidationMessageFor(model => model.AccountCreated, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AddCITRIX, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @if (Model.AddCITRIX == null)
+                        {
+                            <input type="date" class="form-control" id="AddCITRIX" name="AddCITRIX" />
+                        }
+                        else
+                        {
+                            <input type="date" class="form-control" id="AddCITRIX" name="AddCITRIX" value="@(((DateTime)(Model.AddCITRIX)).ToString("yyyy-MM-dd"))" />
+                        }
+                        @Html.ValidationMessageFor(model => model.AddCITRIX, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PasswordEmailed, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @if (Model.PasswordEmailed == null)
+                        {
+                            <input type="date" class="form-control" id="PasswordEmailed" name="PasswordEmailed" />
+                        }
+                        else
+                        {
+                            <input type="date" class="form-control" id="PasswordEmailed" name="PasswordEmailed" value="@(((DateTime)(Model.PasswordEmailed)).ToString("yyyy-MM-dd"))" />
+                        }
+                        @Html.ValidationMessageFor(model => model.PasswordEmailed, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccessToPlus, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @if (Model.AccessToPlus == null)
+                        {
+                            <input type="date" class="form-control" id="AccessToPlus" name="AccessToPlus" />
+                        }
+                        else
+                        {
+                            <input type="date" class="form-control" id="AccessToPlus" name="AccessToPlus" value="@(((DateTime)(Model.AccessToPlus)).ToString("yyyy-MM-dd"))" />
+                        }
+                        @Html.ValidationMessageFor(model => model.AccessToPlus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UUIDAddESR, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @if (Model.UUIDAddESR == null)
+                        {
+                            <input type="date" class="form-control" id="UUIDAddESR" name="UUIDAddESR" />
+                        }
+                        else
+                        {
+                            <input type="date" class="form-control" id="UUIDAddESR" name="UUIDAddESR" value="@(((DateTime)(Model.UUIDAddESR)).ToString("yyyy-MM-dd"))" />
+                        }
+                        @Html.ValidationMessageFor(model => model.UUIDAddESR, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FullyCompliant, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @if (Model.FullyCompliant == null)
+                        {
+                            <input type="date" class="form-control" id="FullyCompliant" name="FullyCompliant" />
+                        }
+                        else
+                        {
+                            <input type="date" class="form-control" id="FullyCompliant" name="FullyCompliant" value="@(((DateTime)(Model.FullyCompliant)).ToString("yyyy-MM-dd"))" />
+                        }
+                        @Html.ValidationMessageFor(model => model.FullyCompliant, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RAComments, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.RAComments, 3, 160, new { @class = "form-control" } )
+                    @Html.ValidationMessageFor(model => model.RAComments, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

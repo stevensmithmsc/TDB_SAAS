@@ -32,6 +32,7 @@ namespace TDB_SAAS.Controllers
             ViewBag.CohortID = new SelectList(_context.Cohorts.OrderBy(c => c.Number), "ID", "CohortDescription");
             ViewBag.LineManID = new SelectList(_context.People.Where(p => p.Flags.Select(f => f.ID).Contains("LMR")), "ID", "FullName");
             ViewBag.TeamList = _context.Teams.OrderBy(t => t.TeamName);
+            ViewBag.ServiceList = _context.Services.Where(s => s.Level == ServiceLevel.Speciality && s.Display).OrderBy(s => s.ServiceName);
 
             return View("PersonForm", viewModel);
         }
@@ -49,6 +50,8 @@ namespace TDB_SAAS.Controllers
                 ViewBag.LineManID = new SelectList(_context.People.Where(p => p.Flags.Select(f => f.ID).Contains("LMR")), "ID", "FullName");
                 List<int> teams = _context.People.SingleOrDefault(p => p.ID == viewModel.ID).MemberOf.Select(m => m.TeamID).ToList();
                 ViewBag.TeamList = _context.Teams.Where(p => !teams.Contains(p.ID)).OrderBy(t => t.TeamName);
+                List<int> servs = _context.People.SingleOrDefault(p => p.ID == viewModel.ID).Services.Select(s => s.ID).ToList();
+                ViewBag.ServiceList = _context.Services.Where(s => !servs.Contains(s.ID) && s.Level == ServiceLevel.Speciality && s.Display).OrderBy(s => s.ServiceName);
                 return View("PersonForm", viewModel);
             }
 
@@ -206,7 +209,9 @@ namespace TDB_SAAS.Controllers
             ViewBag.CohortID = new SelectList(_context.Cohorts.OrderBy(c => c.Number), "ID", "CohortDescription");
             ViewBag.LineManID = new SelectList(_context.People.Where(p => p.Flags.Select(f => f.ID).Contains("LMR")), "ID", "FullName");
             List<int> teams = person.MemberOf.Select(m => m.TeamID).ToList();
-            ViewBag.TeamList = _context.Teams.Where(p => !teams.Contains(p.ID)).OrderBy(t => t.TeamName);
+            ViewBag.TeamList = _context.Teams.Where(t => !teams.Contains(t.ID)).OrderBy(t => t.TeamName);
+            List<int> servs = person.Services.Select(s => s.ID).ToList();
+            ViewBag.ServiceList = _context.Services.Where(s => !servs.Contains(s.ID) && s.Level == ServiceLevel.Speciality && s.Display).OrderBy(s => s.ServiceName);
             return View("PersonForm", viewModel);
         }
 

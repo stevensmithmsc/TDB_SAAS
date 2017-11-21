@@ -9,10 +9,33 @@
 @Html.ValidationSummary()
 <form method="post">
     <input type="hidden" name="teams" value="" />
-    <p>Name: <input type="text" name="Name" value="" /></p>
-    <p>Email: <input type="email" name="Email" value="" /></p>
-    <p>Telephone: <input type="tel" name="Tel" value="" /></p>
-    <p>Subject: <input type="text" name="Sub" /></p>
-    <p>Message:<br /><textarea name="Message" rows="5" cols="80"></textarea></p>
-    <p><input type="submit" value="Send" class="btn btn-default" /></p>
+    <div class="form-group row">
+        <label for="Name" class="col-sm-2 col-form-label">Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Name" id="Name" value="" placeholder="Please enter your name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Email" class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" name="Email" id="Email" value="" placeholder="Please enter your e-mail address">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Tel" class="col-sm-2 col-form-label">Telephone:</label>
+        <div class="col-sm-10">
+            <input type="tel" class="form-control" name="Tel" id="Tel" value="" placeholder="Please enter a contact number">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Sub" class="col-sm-2 col-form-label">Subject:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Sub" id="Sub" placeholder="Please enter the subject of your request">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Message">Message:</label>
+        <textarea class="form-control" name="Message" id="Message" rows="5" cols="80"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
 </form>

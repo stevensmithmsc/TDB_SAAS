@@ -144,9 +144,13 @@ else
                 <ul>
                     @for (int i = 0; i < Model.Services.Count(); i++)
                     {
-                        <li>@Model.Services[i].ServiceName</li>
+                        <li>
+                            @Model.Services[i].ServiceName
+                            @Html.HiddenFor(m => m.Services[i].ServiceName)
+                        </li>
                     }
                 </ul>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#serviceModal">Add Service</button>
             </div>
             <div class="col-md-8 col-sm-6">
                 <h4>Team Memberships</h4>
@@ -173,7 +177,7 @@ else
                 @Html.ValidationMessageFor(m => m.Memberships)
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                    Add New Member
+                    Add New Team Membership
                 </button>
             </div>
         </div>
@@ -199,7 +203,7 @@ else
                 <div class="modal-body">
                     <input name="StaffID" id="StaffID" type="hidden" value="@Model.ID" data-val-required="The TeamID field is required." data-val-number="The field TeamID must be a number." data-val="true">
                     <div class="form-group">
-                        <label for="TeamID">Staff Member: </label>
+                        <label for="TeamID">Team: </label>
                         @Html.DropDownList("TeamID", new SelectList(ViewBag.TeamList, "ID", "TeamName"), "Please Select Team", htmlAttributes: new { @class = "form-control" })
                     </div>
                     <div class="checkbox">
@@ -219,6 +223,30 @@ else
         </div>
     </div>
 </div>
+<!-- Service Modal -->
+<div class="modal fade" id="serviceModal" tabindex="-1" role="dialog" aria-labelledby="serviceModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New Service for @Model.Forename @Model.Surname</h4>
+            </div>
+            <form id="newserv">
+                <div class="modal-body">
+                    <input name="StaffID" id="StaffID" type="hidden" value="@Model.ID" data-val-required="The TeamID field is required." data-val-number="The field TeamID must be a number." data-val="true">
+                    <div class="form-group">
+                        <label for="ServiceID">Service: </label>
+                        @Html.DropDownList("ServiceID", new SelectList(ViewBag.ServiceList, "ID", "ServiceName"), "Please Select Service", htmlAttributes: new { @class = "form-control" })
+                    </div>             
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Service</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
@@ -232,6 +260,23 @@ else
                     data: $("#newmem").serialize(),
                     success: function (data) {
                         $('#myModal').modal('hide');
+                        console.log(data);
+                        location.reload(true);
+                    },
+                    error: function (data) {
+                        alert("There was a problem");
+                        console.log(data);
+                    }
+                });
+            });
+            $('#serviceModal').submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/api/ServiceMembers",
+                    data: $("#newserv").serialize(),
+                    success: function (data) {
+                        $('#serviceModal').modal('hide');
                         console.log(data);
                         location.reload(true);
                     },

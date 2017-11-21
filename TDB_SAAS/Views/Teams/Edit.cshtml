@@ -67,6 +67,7 @@
                         <li>@Model.Services[i].ServiceName</li>
                     }
                 </ul>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#serviceModal">Add Service</button>
             </div>
             <div class="col-md-2">
                 <h4>Boroughs</h4>
@@ -169,6 +170,30 @@
         </div>
     </div>
 </div>
+<!-- Service Modal -->
+<div class="modal fade" id="serviceModal" tabindex="-1" role="dialog" aria-labelledby="serviceModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New Service for @Model.TeamName</h4>
+            </div>
+            <form id="newserv">
+                <div class="modal-body">
+                    <input name="TeamID" id="TeamID" type="hidden" value="@Model.ID" data-val-required="The TeamID field is required." data-val-number="The field TeamID must be a number." data-val="true">
+                    <div class="form-group">
+                        <label for="ServiceID">Service: </label>
+                        @Html.DropDownList("ServiceID", new SelectList(ViewBag.ServiceList, "ID", "ServiceName"), "Please Select Service", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Service</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -186,6 +211,23 @@
                     data: $("#newmem").serialize(),
                     success: function (data) {
                         $('#myModal').modal('hide');
+                        console.log(data);
+                        location.reload(true);
+                    },
+                    error: function (data) {
+                        alert("There was a problem");
+                        console.log(data);
+                    }
+                });
+            });
+            $('#serviceModal').submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/api/ServiceTeams",
+                    data: $("#newserv").serialize(),
+                    success: function (data) {
+                        $('#serviceModal').modal('hide');
                         console.log(data);
                         location.reload(true);
                     },

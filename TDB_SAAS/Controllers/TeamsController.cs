@@ -18,7 +18,7 @@ namespace TDB_SAAS.Controllers
         // GET: Teams
         public ActionResult Index()
         {
-            var teams = db.Teams.Include(t => t.Members);//.Include(t => t.Cohort).Include(t => t.Finance).Include(t => t.Leader);
+            var teams = db.Teams.Include(t => t.Members).OrderBy(t => t.TeamName);//.Include(t => t.Cohort).Include(t => t.Finance).Include(t => t.Leader);
             return View(teams);
         }
 
@@ -106,6 +106,8 @@ namespace TDB_SAAS.Controllers
             ViewBag.LeaderID = new SelectList(team.Members.Select(m => m.Staff), "ID", "Fullname", team.LeaderID);
             List<int> members = team.Members.Select(m => m.StaffID).ToList();
             ViewBag.StaffList = db.People.Where(p => !members.Contains(p.ID)).Where(p => p.ID > 0);
+            List<int> servs = team.Services.Select(s => s.ID).ToList();
+            ViewBag.ServiceList = db.Services.Where(s => !servs.Contains(s.ID) && s.Level == ServiceLevel.Speciality && s.Display).OrderBy(s => s.ServiceName);
             return View(viewModel);
         }
 
@@ -198,6 +200,10 @@ namespace TDB_SAAS.Controllers
             ViewBag.CohortID = new SelectList(db.Cohorts, "ID", "Code", team.CohortID);
             ViewBag.FinanceCode = new SelectList(db.CostCentres, "Code", "CCName", team.FinanceCode);
             ViewBag.LeaderID = new SelectList(db.People, "ID", "Fullname", team.LeaderID);
+            List<int> members = team.Members.Select(m => m.StaffID).ToList();
+            ViewBag.StaffList = db.People.Where(p => !members.Contains(p.ID)).Where(p => p.ID > 0);
+            List<int> servs = team.Services.Select(s => s.ID).ToList();
+            ViewBag.ServiceList = db.Services.Where(s => !servs.Contains(s.ID) && s.Level == ServiceLevel.Speciality && s.Display).OrderBy(s => s.ServiceName);
             return View(team);
         }
 

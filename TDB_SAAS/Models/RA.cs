@@ -24,12 +24,14 @@ namespace TDB_SAAS.Models
         [Display(Name = "ESR Updated")]
         public Nullable<short> ESRUpdatedID { get; set; }
         public virtual Status ESRUpdated { get; set; }
-       
+
+        [Display(Name = "E-Gif L3 / RA Complete")]
         public Nullable<DateTime> EGifL3 { get; set; }
 
+        [Display(Name = "Paris Declaration Form Received")]
         public Nullable<DateTime> Declaration { get; set; }
 
-        [Display(Name = "Go Live Approved")]
+        [Display(Name = "Main Paris Go Live Approved")]
         public Nullable<DateTime> GoLiveApproved { get; set; }
 
         public bool GLALocked { get; set; }
@@ -39,22 +41,22 @@ namespace TDB_SAAS.Models
 
         public bool CHGLALocked { get; set; }
 
-        [Display(Name = "Account Created")]
+        [Display(Name = "Paris Account Created")]
         public Nullable<DateTime> AccountCreated { get; set; }
 
-        [Display(Name = "Added to Citrix Group")]
+        [Display(Name = "Added to Live Citrix Group")]
         public Nullable<DateTime> AddCITRIX { get; set; }
 
-        [Display(Name = "Password Emailed")]
+        [Display(Name = "Paris Password Emailed")]
         public Nullable<DateTime> PasswordEmailed { get; set; }
 
-        [Display(Name = "Access to Plus")]
+        [Display(Name = "RA Granted Access to Plus")]
         public Nullable<DateTime> AccessToPlus { get; set; }
 
         [Display(Name = "UUID added to ESR")]
         public Nullable<DateTime> UUIDAddESR { get; set; }
 
-        [Display(Name = "Fully Compliant")]
+        [Display(Name = "Fully Compliant pre-database")]
         public Nullable<DateTime> FullyCompliant { get; set; }
 
         [Display(Name = "RA Comments")]

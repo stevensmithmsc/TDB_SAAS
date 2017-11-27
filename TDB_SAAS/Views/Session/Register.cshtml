@@ -1,0 +1,78 @@
+﻿@model TDB_SAAS.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Paris Training Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Paris Training Register</h2>
+<div class="row">
+    <div class="col-md-9">
+        <p>@(((DateTime)(Model.Sess.Strt)).ToLongDateString())</p>
+        <h3>@Model.Sess.Course.CourseName</h3>
+    </div>
+    <div class="col-md-3">
+        <p><Strong>Start:</Strong> @(((DateTime)(Model.Sess.Strt)).ToShortTimeString())</p>
+        <p><Strong>End:</Strong> @(((DateTime)(Model.Sess.Endt)).ToShortTimeString())</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <p><strong>Trainer:</strong> @Model.Sess.Trainer.GetFullName()</p>
+    </div>
+    <div class="col-md-6">
+        <p><strong>Location:</strong> @Model.Sess.Location.LocationName</p>
+    </div>
+</div>
+<hr />
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Job Title</th>
+        <th>Main Team</th>
+        <th>Status</th>
+        <th>Declaration Recieved</th>
+        <th>Comments</th>
+    </tr>
+    @for (int i = 0; i < Model.Bookings.Length; i++)
+    {
+        if (Model.Bookings[i].ID == 0)
+        {
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>@Model.Bookings[i].Staff.GetFullName()</td>
+                <td>@Model.Bookings[i].Staff.JobTitle</td>
+                <td>@Model.Bookings[i].Staff.GetMainTeam().TeamName</td>
+                <td>@Model.Bookings[i].Outcome.StatusDesc</td>
+                <td>&nbsp;</td>
+                <td>@Model.Bookings[i].Comments</td>
+            </tr>
+        }
+
+    }
+</table>
+<div class="row">
+    <div class="col-md-6">
+        <p><strong>Session ID:</strong> @Model.Sess.ID</p>
+    </div>
+    <div class="col-md-2">
+        <p><strong>Places:</strong> @Model.Sess.MaxP</p>
+    </div>
+    <div class="col-md-2">
+        <p><strong>Booked:</strong> @Model.Sess.Bookings</p>
+    </div>
+    <div class="col-md-2">
+        <p><strong>Available:</strong> @Model.Sess.AvailablePlaces</p>
+    </div>
+</div>
+
+

@@ -233,6 +233,13 @@ namespace TDB_SAAS.Controllers
             return RedirectToAction("Index", "Session");
         }
 
+        public ActionResult Register(int id)
+        {
+            RegisterViewModel viewModel = new RegisterViewModel(_context.Sessions.SingleOrDefault(s => s.ID == id));
+
+            return View(viewModel);
+        }
+
         // GET: Session
         public ActionResult Index()
         {

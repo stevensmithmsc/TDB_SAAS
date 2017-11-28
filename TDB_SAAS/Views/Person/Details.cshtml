@@ -510,6 +510,41 @@
 </div>
 <hr />
 <div>
+    <h3>Team Approvals</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Team</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Details</th>
+        </tr>
+        @foreach (var teamApprov in Model.TeamApprovals.OrderBy(t => t.StartDate).ThenBy(t => t.Team))
+        {
+            <tr>
+                <td>@teamApprov.Team</td>
+                <td>
+                    @if (teamApprov.StartDate != null)
+                    {
+                        @(((DateTime)teamApprov.StartDate).ToShortDateString())
+                    }
+                </td>
+                <td>
+                    @if (teamApprov.EndDate != null)
+                    {
+                        @(((DateTime)teamApprov.EndDate).ToShortDateString())
+                    }
+                </td>
+                <td>@teamApprov.Details</td>
+            </tr>
+        }
+    </table>
+    <p>
+        @Html.ActionLink("Edit Team Approvals", "TeamApprov", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+<hr />
+<div>
     <h3>Requirements</h3>
     <table class="table table-striped">
         <tr>

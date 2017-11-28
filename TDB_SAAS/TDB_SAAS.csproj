@@ -185,6 +185,7 @@
     <Compile Include="Controllers\ServiceTeamsController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\SubjectivesController.cs" />
+    <Compile Include="Controllers\TeamApprovalsController.cs" />
     <Compile Include="Controllers\TeamMembersController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="DTOs\NewReqDTO.cs" />
     <Compile Include="DTOs\ServiceMemberDTO.cs" />
     <Compile Include="DTOs\ServiceTeamDTO.cs" />
+    <Compile Include="DTOs\TeamApprovalDTO.cs" />
     <Compile Include="DTOs\TeamMemberDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -429,6 +431,7 @@
     <Content Include="Views\Person\TNA.cshtml" />
     <Content Include="Views\Person\RA.cshtml" />
     <Content Include="Views\Session\Register.cshtml" />
+    <Content Include="Views\Person\TeamApprov.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

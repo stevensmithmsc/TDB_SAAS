@@ -1,0 +1,152 @@
+﻿@model TDB_SAAS.Models.TeamApproval[]
+
+@{
+    ViewBag.Title = "Team Approvals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Team Approvals - @ViewBag.Staff.FullName</h2>
+<h4>TeamApproval</h4>
+<hr />
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Add New Team Approval
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New Team Approval</h4>
+            </div>
+            <form id="newaprov">
+                <div class="modal-body">
+                    <input name="StaffID" id="StaffID" type="hidden" value="@ViewBag.Staff.ID" data-val-required="The StaffID field is required." data-val-number="The field StaffID must be a number." data-val="true">
+                    <div class="form-group">
+                        <label for="Team">Team</label>
+                        <input type="text" class="form-control" id="Team" name="Team" placeholder="Enter Team">
+                    </div>
+                    <div class="form-group">
+                        <label for="StartDate">Start Date</label>
+                        <input type="date" class="form-control" id="StartDate" name="StartDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="EndDate">End Date</label>
+                        <input type="date" class="form-control" id="EndDate" name="EndDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="Details">Details</label>
+                        <input type="text" class="form-control" id="Details" name="Details" placeholder="Enter Details">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Requirement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("UpdateTeamApprov", "Person"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.LabelFor(model => model[0].Team, htmlAttributes: new { @class = "control-label" })</th>
+                    <th>@Html.LabelFor(model => model[0].StartDate, htmlAttributes: new { @class = "control-label" })</th>
+                    <th>@Html.LabelFor(model => model[0].EndDate, htmlAttributes: new { @class = "control-label" })</th>
+                    <th>@Html.LabelFor(model => model[0].Details, htmlAttributes: new { @class = "control-label" })</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Length; i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(model => model[i].ID)
+                            @Html.HiddenFor(model => model[i].StaffID)
+                            @Html.EditorFor(model => model[i].Team, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model[i].Team, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @if (Model[i].StartDate == null)
+                            {
+                                <input type="date" class="form-control" id="[@i].StartDate" name="[@i].StartDate" data-val="true" data-val-date="The field StartDate must be a date."/>
+                            }
+                            else
+                            {
+                                <input type="date" class="form-control" id="[@i].StartDate" name="[@i].StartDate" value="@(((DateTime)(Model[i].StartDate)).ToString("yyyy-MM-dd"))" data-val="true" data-val-date="The field StartDate must be a date."/>
+                            }
+                            @*@Html.EditorFor(model => model[i].StartDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.ValidationMessageFor(model => model[i].StartDate, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @if (Model[i].EndDate == null)
+                            {
+                                <input type="date" class="form-control" id="[@i].EndDate" name="[@i].EndDate" data-val="true" data-val-date="The field EndDate must be a date."/>
+                            }
+                            else
+                            {
+                                <input type="date" class="form-control" id="[@i].EndDate" name="[@i].EndDate" value="@(((DateTime)(Model[i].EndDate)).ToString("yyyy-MM-dd"))" data-val="true" data-val-date="The field EndDate must be a date."/>
+                            }
+                            @*@Html.EditorFor(model => model[i].EndDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.ValidationMessageFor(model => model[i].EndDate, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model[i].Details, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model[i].Details, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $( '#newaprov' ).submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/api/TeamApprovals",
+                    data: $("#newaprov").serialize(),
+                    success: function (data) {
+                        $('#myModal').modal('hide');
+                        console.log(data);
+                        location.reload(true);
+                    },
+                    error: function (data) {
+                        alert("There was a problem");
+                        console.log(data);
+                    }
+                });
+            });
+        });
+
+
+    </script>
+}
+
+

@@ -461,6 +461,59 @@ namespace TDB_SAAS.Controllers
             return RedirectToAction("Index", "Person");
         }
 
+        public ActionResult TeamApprov(int id)
+        {
+            var person = _context.People.SingleOrDefault(p => p.ID == id);
+            if (person == null) return HttpNotFound();
+            ViewBag.Staff = person;
+            TeamApproval[] viewModel = person.TeamApprovals.ToArray();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateTeamApprov(TeamApproval[] teamApprovals)
+        {
+            if (!ModelState.IsValid)
+            {
+                TeamApproval[] viewModel = teamApprovals;
+                ViewBag.Staff = _context.People.SingleOrDefault(p => p.ID == teamApprovals[0].StaffID);
+
+                return View("TeamApprov", viewModel);
+            }
+
+            Person userperson = _context.People.SingleOrDefault(p => p.ID == 0);
+
+            for (int i = 0; i < teamApprovals.Count(); i++)
+            {
+                int aprvID = teamApprovals[i].ID;
+                var approval = _context.TeamApprovals.SingleOrDefault(t => t.ID == aprvID);
+                bool changed = false;
+
+                if (approval.Team != teamApprovals[i].Team || approval.StartDate != teamApprovals[i].StartDate
+                    || approval.EndDate != teamApprovals[i].EndDate || approval.Details != teamApprovals[i].Details)
+                {
+                    approval.Team = teamApprovals[i].Team;
+                    approval.StartDate = teamApprovals[i].StartDate;
+                    approval.EndDate = teamApprovals[i].EndDate;
+                    approval.Details = teamApprovals[i].Details;
+                    changed = true;
+                }
+
+                if (changed)
+                {
+                    approval.Modified = DateTime.Now;
+                    approval.Modifier = userperson;
+                }
+
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Person");
+        }
+
         // GET: Person/Details
         public ActionResult Details(int id)
         {

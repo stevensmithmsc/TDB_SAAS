@@ -280,6 +280,10 @@
     <Compile Include="Migrations\201711011438402_Amend RA Table.Designer.cs">
       <DependentUpon>201711011438402_Amend RA Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711281053289_Add Team Approvals to DB.cs" />
+    <Compile Include="Migrations\201711281053289_Add Team Approvals to DB.Designer.cs">
+      <DependentUpon>201711281053289_Add Team Approvals to DB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Borough.cs" />
@@ -301,6 +305,7 @@
     <Compile Include="Models\EntityConfigurations\ServiceConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\StatusConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\SubjectiveConfiguration.cs" />
+    <Compile Include="Models\EntityConfigurations\TeamApprovalConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\TeamConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\TeamMemberConfiguration.cs" />
     <Compile Include="Models\EntityConfigurations\TitleConfiguration.cs" />
@@ -318,6 +323,7 @@
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Subjective.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamApproval.cs" />
     <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Models\Title.cs" />
     <Compile Include="Models\TNA.cs" />
@@ -498,6 +504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711011438402_Amend RA Table.resx">
       <DependentUpon>201711011438402_Amend RA Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711281053289_Add Team Approvals to DB.resx">
+      <DependentUpon>201711281053289_Add Team Approvals to DB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

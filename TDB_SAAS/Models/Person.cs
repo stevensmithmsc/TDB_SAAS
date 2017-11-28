@@ -81,6 +81,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Cohort> CohortsCreated { get; set; }
         public virtual ICollection<TNA> TNAsCreated { get; set; }
         public virtual ICollection<RA> RAsCreated { get; set; }
+        public virtual ICollection<TeamApproval> TeamApprovalsCreated { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -108,6 +109,7 @@ namespace TDB_SAAS.Models
         public virtual ICollection<Cohort> CohortsModified { get; set; }
         public virtual ICollection<TNA> TNAsModified { get; set; }
         public virtual ICollection<RA> RAsModified { get; set; }
+        public virtual ICollection<TeamApproval> TeamApprovalsModified { get; set; }
 
         public DateTime Modified { get; set; }
 
@@ -132,6 +134,8 @@ namespace TDB_SAAS.Models
         public virtual ICollection<TNA> TNAsAsTrainer { get; set; }
 
         public virtual RA RA { get; set; }
+
+        public virtual ICollection<TeamApproval> TeamApprovals { get; set; }
 
         public virtual string FullName {  get { return GetFullName(); } }
 
@@ -185,6 +189,11 @@ namespace TDB_SAAS.Models
             TNAsAsTrainer = new HashSet<TNA>();
             TNAsCreated = new HashSet<TNA>();
             TNAsModified = new HashSet<TNA>();
+            RAsCreated = new HashSet<RA>();
+            RAsModified = new HashSet<RA>();
+            TeamApprovals = new HashSet<TeamApproval>();
+            TeamApprovalsCreated = new HashSet<TeamApproval>();
+            TeamApprovalsModified = new HashSet<TeamApproval>();
         }
 
         public string GetFullName()

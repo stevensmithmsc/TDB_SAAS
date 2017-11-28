@@ -37,6 +37,7 @@ namespace TDB_SAAS.Models
         public virtual DbSet<Cohort> Cohorts { get; set; }
         public virtual DbSet<TNA> TNAs { get; set; }
         public virtual DbSet<RA> RAs { get; set; }
+        public virtual DbSet<TeamApproval> TeamApprovals { get; set; }
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
@@ -61,6 +62,7 @@ namespace TDB_SAAS.Models
             modelBuilder.Configurations.Add(new CohortConfiguration());
             modelBuilder.Configurations.Add(new TNAConfiguration());
             modelBuilder.Configurations.Add(new RAConfiguration());
+            modelBuilder.Configurations.Add(new TeamApprovalConfiguration());
         }
     }
 
